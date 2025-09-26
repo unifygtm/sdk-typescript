@@ -7,10 +7,9 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./",
     "paths": {
-      "unify/*": ["src/*"],
-      "unify": ["src/index.ts"]
+      "unify/*": ["./src/*"],
+      "unify": ["./src/index.ts"]
     },
     "noEmit": true,
 

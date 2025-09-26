@@ -5,8 +5,8 @@
   "compilerOptions": {
     "rootDir": "./dist/src",
     "paths": {
-      "unify/*": ["dist/src/*"],
-      "unify": ["dist/src/index.ts"]
+      "unify/*": ["./dist/src/*"],
+      "unify": ["./dist/src/index.ts"]
     },
     "noEmit": false,
     "declaration": true,
