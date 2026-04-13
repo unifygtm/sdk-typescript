@@ -7,13 +7,16 @@ const client = new Unify({
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
-describe('resource options', () => {
+describe('resource attributes', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.data.objects.attributes.options.create('attribute_name', {
-      object_name: 'object_name',
+    const responsePromise = client.data.attributes.create('object_name', {
       api_name: 'api_name',
+      description: 'description',
       display_name: 'display_name',
+      is_required: true,
+      is_unique: true,
+      type: 'ADDRESS',
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,19 +29,19 @@ describe('resource options', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.data.objects.attributes.options.create('attribute_name', {
-      object_name: 'object_name',
+    const response = await client.data.attributes.create('object_name', {
       api_name: 'api_name',
+      description: 'description',
       display_name: 'display_name',
+      is_required: true,
+      is_unique: true,
+      type: 'ADDRESS',
     });
   });
 
   // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
-    const responsePromise = client.data.objects.attributes.options.retrieve('option_name', {
-      object_name: 'object_name',
-      attribute_name: 'attribute_name',
-    });
+    const responsePromise = client.data.attributes.retrieve('attribute_name', { object_name: 'object_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -50,17 +53,14 @@ describe('resource options', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve: required and optional params', async () => {
-    const response = await client.data.objects.attributes.options.retrieve('option_name', {
-      object_name: 'object_name',
-      attribute_name: 'attribute_name',
-    });
+    const response = await client.data.attributes.retrieve('attribute_name', { object_name: 'object_name' });
   });
 
   // Mock server tests are disabled
   test.skip('update: only required params', async () => {
-    const responsePromise = client.data.objects.attributes.options.update('option_name', {
+    const responsePromise = client.data.attributes.update('attribute_name', {
       object_name: 'object_name',
-      attribute_name: 'attribute_name',
+      description: 'description',
       display_name: 'display_name',
     });
     const rawResponse = await responsePromise.asResponse();
@@ -74,18 +74,16 @@ describe('resource options', () => {
 
   // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
-    const response = await client.data.objects.attributes.options.update('option_name', {
+    const response = await client.data.attributes.update('attribute_name', {
       object_name: 'object_name',
-      attribute_name: 'attribute_name',
+      description: 'description',
       display_name: 'display_name',
     });
   });
 
   // Mock server tests are disabled
-  test.skip('list: only required params', async () => {
-    const responsePromise = client.data.objects.attributes.options.list('attribute_name', {
-      object_name: 'object_name',
-    });
+  test.skip('list', async () => {
+    const responsePromise = client.data.attributes.list('object_name');
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -96,18 +94,8 @@ describe('resource options', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list: required and optional params', async () => {
-    const response = await client.data.objects.attributes.options.list('attribute_name', {
-      object_name: 'object_name',
-    });
-  });
-
-  // Mock server tests are disabled
   test.skip('delete: only required params', async () => {
-    const responsePromise = client.data.objects.attributes.options.delete('option_name', {
-      object_name: 'object_name',
-      attribute_name: 'attribute_name',
-    });
+    const responsePromise = client.data.attributes.delete('attribute_name', { object_name: 'object_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -119,9 +107,6 @@ describe('resource options', () => {
 
   // Mock server tests are disabled
   test.skip('delete: required and optional params', async () => {
-    const response = await client.data.objects.attributes.options.delete('option_name', {
-      object_name: 'object_name',
-      attribute_name: 'attribute_name',
-    });
+    const response = await client.data.attributes.delete('attribute_name', { object_name: 'object_name' });
   });
 });

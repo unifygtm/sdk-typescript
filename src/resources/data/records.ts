@@ -1,9 +1,9 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../core/resource';
-import { APIPromise } from '../../../core/api-promise';
-import { RequestOptions } from '../../../internal/request-options';
-import { path } from '../../../internal/utils/path';
+import { APIResource } from '../../core/resource';
+import { APIPromise } from '../../core/api-promise';
+import { RequestOptions } from '../../internal/request-options';
+import { path } from '../../internal/utils/path';
 
 export class Records extends APIResource {
   create(
@@ -39,14 +39,6 @@ export class Records extends APIResource {
       body,
       ...options,
     });
-  }
-
-  list(
-    objectName: string,
-    query: RecordListParams | null | undefined = {},
-    options?: RequestOptions,
-  ): APIPromise<RecordListResponse> {
-    return this._client.get(path`/data/v1/objects/${objectName}/records`, { query, ...options });
   }
 
   delete(
@@ -181,50 +173,6 @@ export interface RecordUpdateResponse {
 }
 
 export namespace RecordUpdateResponse {
-  export interface Data {
-    /**
-     * String UUIDv4 value.
-     */
-    id: string;
-
-    /**
-     * Attribute values for the record. Each key is the API name of the attribute and
-     * each value is the corresponding attribute value for the record.
-     */
-    attributes: unknown;
-
-    /**
-     * Date and time the record was created.
-     */
-    created_at: string;
-
-    /**
-     * The API name of the object this record is an instance of.
-     */
-    object: string;
-
-    /**
-     * Date and time the record was last updated.
-     */
-    updated_at: string;
-  }
-}
-
-/**
- * Response for a successful list operation with cursor-based pagination.
- */
-export interface RecordListResponse {
-  /**
-   * String UUIDv4 value.
-   */
-  cursor: string | null;
-
-  data: Array<RecordListResponse.Data>;
-
-  status: 'success';
-}
-
-export namespace RecordListResponse {
   export interface Data {
     /**
      * String UUIDv4 value.
@@ -390,18 +338,6 @@ export interface RecordUpdateParams {
   validation_mode?: ValidationMode;
 }
 
-export interface RecordListParams {
-  /**
-   * Cursor from the previous response to resume pagination from.
-   */
-  cursor?: string;
-
-  /**
-   * Limit the number of records returned. Default is 100.
-   */
-  limit?: number;
-}
-
 export interface RecordDeleteParams {
   object_name: string;
 }
@@ -477,14 +413,12 @@ export declare namespace Records {
     type RecordCreateResponse as RecordCreateResponse,
     type RecordRetrieveResponse as RecordRetrieveResponse,
     type RecordUpdateResponse as RecordUpdateResponse,
-    type RecordListResponse as RecordListResponse,
     type RecordDeleteResponse as RecordDeleteResponse,
     type RecordFindUniqueResponse as RecordFindUniqueResponse,
     type RecordUpsertResponse as RecordUpsertResponse,
     type RecordCreateParams as RecordCreateParams,
     type RecordRetrieveParams as RecordRetrieveParams,
     type RecordUpdateParams as RecordUpdateParams,
-    type RecordListParams as RecordListParams,
     type RecordDeleteParams as RecordDeleteParams,
     type RecordFindUniqueParams as RecordFindUniqueParams,
     type RecordUpsertParams as RecordUpsertParams,

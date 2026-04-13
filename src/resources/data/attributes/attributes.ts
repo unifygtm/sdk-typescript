@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { APIResource } from '../../../../core/resource';
+import { APIResource } from '../../../core/resource';
 import * as AttributesAPI from './attributes';
 import * as OptionsAPI from './options';
 import {
@@ -17,9 +17,9 @@ import {
   Options,
   UAttributeOption,
 } from './options';
-import { APIPromise } from '../../../../core/api-promise';
-import { RequestOptions } from '../../../../internal/request-options';
-import { path } from '../../../../internal/utils/path';
+import { APIPromise } from '../../../core/api-promise';
+import { RequestOptions } from '../../../internal/request-options';
+import { path } from '../../../internal/utils/path';
 
 export class Attributes extends APIResource {
   options: OptionsAPI.Options = new OptionsAPI.Options(this._client);

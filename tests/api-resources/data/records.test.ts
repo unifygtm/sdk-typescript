@@ -10,7 +10,7 @@ const client = new Unify({
 describe('resource records', () => {
   // Mock server tests are disabled
   test.skip('create: only required params', async () => {
-    const responsePromise = client.data.objects.records.create('object_name', { data: {} });
+    const responsePromise = client.data.records.create('object_name', { data: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -22,7 +22,7 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
-    const response = await client.data.objects.records.create('object_name', {
+    const response = await client.data.records.create('object_name', {
       data: {},
       validation_mode: 'strict',
     });
@@ -30,7 +30,7 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve: only required params', async () => {
-    const responsePromise = client.data.objects.records.retrieve('record_id', { object_name: 'object_name' });
+    const responsePromise = client.data.records.retrieve('record_id', { object_name: 'object_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -42,12 +42,12 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('retrieve: required and optional params', async () => {
-    const response = await client.data.objects.records.retrieve('record_id', { object_name: 'object_name' });
+    const response = await client.data.records.retrieve('record_id', { object_name: 'object_name' });
   });
 
   // Mock server tests are disabled
   test.skip('update: only required params', async () => {
-    const responsePromise = client.data.objects.records.update('record_id', {
+    const responsePromise = client.data.records.update('record_id', {
       object_name: 'object_name',
       data: {},
     });
@@ -62,7 +62,7 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
-    const response = await client.data.objects.records.update('record_id', {
+    const response = await client.data.records.update('record_id', {
       object_name: 'object_name',
       data: {},
       validation_mode: 'strict',
@@ -70,32 +70,8 @@ describe('resource records', () => {
   });
 
   // Mock server tests are disabled
-  test.skip('list', async () => {
-    const responsePromise = client.data.objects.records.list('object_name');
-    const rawResponse = await responsePromise.asResponse();
-    expect(rawResponse).toBeInstanceOf(Response);
-    const response = await responsePromise;
-    expect(response).not.toBeInstanceOf(Response);
-    const dataAndResponse = await responsePromise.withResponse();
-    expect(dataAndResponse.data).toBe(response);
-    expect(dataAndResponse.response).toBe(rawResponse);
-  });
-
-  // Mock server tests are disabled
-  test.skip('list: request options and params are passed correctly', async () => {
-    // ensure the request options are being passed correctly by passing an invalid HTTP method in order to cause an error
-    await expect(
-      client.data.objects.records.list(
-        'object_name',
-        { cursor: 'cursor', limit: 1 },
-        { path: '/_stainless_unknown_path' },
-      ),
-    ).rejects.toThrow(Unify.NotFoundError);
-  });
-
-  // Mock server tests are disabled
   test.skip('delete: only required params', async () => {
-    const responsePromise = client.data.objects.records.delete('record_id', { object_name: 'object_name' });
+    const responsePromise = client.data.records.delete('record_id', { object_name: 'object_name' });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -107,12 +83,12 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('delete: required and optional params', async () => {
-    const response = await client.data.objects.records.delete('record_id', { object_name: 'object_name' });
+    const response = await client.data.records.delete('record_id', { object_name: 'object_name' });
   });
 
   // Mock server tests are disabled
   test.skip('findUnique: only required params', async () => {
-    const responsePromise = client.data.objects.records.findUnique('object_name', { match: {} });
+    const responsePromise = client.data.records.findUnique('object_name', { match: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -124,12 +100,12 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('findUnique: required and optional params', async () => {
-    const response = await client.data.objects.records.findUnique('object_name', { match: {} });
+    const response = await client.data.records.findUnique('object_name', { match: {} });
   });
 
   // Mock server tests are disabled
   test.skip('upsert: only required params', async () => {
-    const responsePromise = client.data.objects.records.upsert('object_name', { match: {} });
+    const responsePromise = client.data.records.upsert('object_name', { match: {} });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -141,7 +117,7 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('upsert: required and optional params', async () => {
-    const response = await client.data.objects.records.upsert('object_name', {
+    const response = await client.data.records.upsert('object_name', {
       match: {},
       validation_mode: 'strict',
       create: {},
