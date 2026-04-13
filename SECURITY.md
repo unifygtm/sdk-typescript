@@ -20,7 +20,7 @@ or products provided by Unify, please follow the respective company's security r
 
 ### Unify Terms and Policies
 
-Please contact support@unifygtm.com for any questions or concerns regarding the security of our services.
+Please contact security@unifygtm.com for any questions or concerns regarding the security of our services.
 
 ---
 
