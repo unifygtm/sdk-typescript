@@ -1,6 +1,6 @@
 # Unify TypeScript API Library
 
-[![NPM version](<https://img.shields.io/npm/v/unify.svg?label=npm%20(stable)>)](https://npmjs.org/package/unify) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/unify)
+[![NPM version](<https://img.shields.io/npm/v/@unifygtm/sdk.svg?label=npm%20(stable)>)](https://npmjs.org/package/@unifygtm/sdk) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@unifygtm/sdk)
 
 This library provides convenient access to the Unify REST API from server-side TypeScript or JavaScript.
 
@@ -15,7 +15,7 @@ npm install git+ssh://git@github.com:stainless-sdks/unify-typescript.git
 ```
 
 > [!NOTE]
-> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install unify`
+> Once this package is [published to npm](https://www.stainless.com/docs/guides/publish), this will become: `npm install @unifygtm/sdk`
 
 ## Usage
 
@@ -23,13 +23,13 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 
 const client = new Unify({
   apiKey: process.env['UNIFY_API_KEY'], // This is the default and can be omitted
 });
 
-const objects = await client.objects.list();
+const objects = await client.data.objects.list();
 
 console.log(objects.data);
 ```
@@ -40,13 +40,13 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 
 const client = new Unify({
   apiKey: process.env['UNIFY_API_KEY'], // This is the default and can be omitted
 });
 
-const objects: Unify.ObjectListResponse = await client.objects.list();
+const objects: Unify.Data.ObjectListResponse = await client.data.objects.list();
 ```
 
 Documentation for each method, request param, and response field are available in docstrings and will appear on hover in most modern editors.
@@ -59,7 +59,7 @@ a subclass of `APIError` will be thrown:
 
 <!-- prettier-ignore -->
 ```ts
-const objects = await client.objects.list().catch(async (err) => {
+const objects = await client.data.objects.list().catch(async (err) => {
   if (err instanceof Unify.APIError) {
     console.log(err.status); // 400
     console.log(err.name); // BadRequestError
@@ -99,7 +99,7 @@ const client = new Unify({
 });
 
 // Or, configure per-request:
-await client.objects.list({
+await client.data.objects.list({
   maxRetries: 5,
 });
 ```
@@ -116,7 +116,7 @@ const client = new Unify({
 });
 
 // Override per-request:
-await client.objects.list({
+await client.data.objects.list({
   timeout: 5 * 1000,
 });
 ```
@@ -139,11 +139,11 @@ Unlike `.asResponse()` this method consumes the body, returning once it is parse
 ```ts
 const client = new Unify();
 
-const response = await client.objects.list().asResponse();
+const response = await client.data.objects.list().asResponse();
 console.log(response.headers.get('X-My-Header'));
 console.log(response.statusText); // access the underlying Response object
 
-const { data: objects, response: raw } = await client.objects.list().withResponse();
+const { data: objects, response: raw } = await client.data.objects.list().withResponse();
 console.log(raw.headers.get('X-My-Header'));
 console.log(objects.data);
 ```
@@ -162,7 +162,7 @@ The log level can be configured in two ways:
 2. Using the `logLevel` client option (overrides the environment variable if set)
 
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 
 const client = new Unify({
   logLevel: 'debug', // Show all log messages
@@ -190,7 +190,7 @@ When providing a custom logger, the `logLevel` option still controls which messa
 below the configured level will not be sent to your logger.
 
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 import pino from 'pino';
 
 const logger = pino();
@@ -225,7 +225,7 @@ parameter. This library doesn't validate at runtime that the request matches the
 send will be sent as-is.
 
 ```ts
-client.objects.list({
+client.data.objects.list({
   // ...
   // @ts-expect-error baz is not yet public
   baz: 'undocumented option',
@@ -259,7 +259,7 @@ globalThis.fetch = fetch;
 Or pass it to the client:
 
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 import fetch from 'my-fetch';
 
 const client = new Unify({ fetch });
@@ -270,7 +270,7 @@ const client = new Unify({ fetch });
 If you want to set custom `fetch` options without overriding the `fetch` function, you can provide a `fetchOptions` object when instantiating the client or making a request. (Request-specific options override client options.)
 
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 
 const client = new Unify({
   fetchOptions: {
@@ -287,7 +287,7 @@ options to requests:
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/node.svg" align="top" width="18" height="21"> **Node** <sup>[[docs](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md#example---proxyagent-with-fetch)]</sup>
 
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 import * as undici from 'undici';
 
 const proxyAgent = new undici.ProxyAgent('http://localhost:8888');
@@ -301,7 +301,7 @@ const client = new Unify({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/bun.svg" align="top" width="18" height="21"> **Bun** <sup>[[docs](https://bun.sh/guides/http/proxy)]</sup>
 
 ```ts
-import Unify from 'unify';
+import Unify from '@unifygtm/sdk';
 
 const client = new Unify({
   fetchOptions: {
@@ -313,7 +313,7 @@ const client = new Unify({
 <img src="https://raw.githubusercontent.com/stainless-api/sdk-assets/refs/heads/main/deno.svg" align="top" width="18" height="21"> **Deno** <sup>[[docs](https://docs.deno.com/api/deno/~/Deno.createHttpClient)]</sup>
 
 ```ts
-import Unify from 'npm:unify';
+import Unify from 'npm:@unifygtm/sdk';
 
 const httpClient = Deno.createHttpClient({ proxy: { url: 'http://localhost:8888' } });
 const client = new Unify({

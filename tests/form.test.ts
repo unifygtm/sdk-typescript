@@ -1,5 +1,5 @@
-import { multipartFormRequestOptions, createForm } from 'unify/internal/uploads';
-import { toFile } from 'unify/core/uploads';
+import { multipartFormRequestOptions, createForm } from '@unifygtm/sdk/internal/uploads';
+import { toFile } from '@unifygtm/sdk/core/uploads';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {
