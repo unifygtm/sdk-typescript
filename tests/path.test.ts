@@ -1,4 +1,4 @@
-import { createPathTagFunction, encodeURIPath } from 'unify/internal/utils/path';
+import { createPathTagFunction, encodeURIPath } from '@unifygtm/sdk/internal/utils/path';
 import { inspect } from 'node:util';
 import { runInNewContext } from 'node:vm';
 

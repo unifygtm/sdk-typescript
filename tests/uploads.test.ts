@@ -1,6 +1,6 @@
 import fs from 'fs';
-import type { ResponseLike } from 'unify/internal/to-file';
-import { toFile } from 'unify/core/uploads';
+import type { ResponseLike } from '@unifygtm/sdk/internal/to-file';
+import { toFile } from '@unifygtm/sdk/core/uploads';
 import { File } from 'node:buffer';
 
 class MyClass {
@@ -97,7 +97,7 @@ describe('missing File error message', () => {
   });
 
   test('is thrown', async () => {
-    const uploads = await import('unify/core/uploads');
+    const uploads = await import('@unifygtm/sdk/core/uploads');
     await expect(
       uploads.toFile(mockResponse({ url: 'https://example.com/my/audio.mp3' })),
     ).rejects.toMatchInlineSnapshot(

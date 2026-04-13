@@ -11,24 +11,13 @@ import type { APIResponseProps } from './internal/parse';
 import { getPlatformHeaders } from './internal/detect-platform';
 import * as Shims from './internal/shims';
 import * as Opts from './internal/request-options';
+import { stringifyQuery } from './internal/utils/query';
 import { VERSION } from './version';
 import * as Errors from './core/error';
 import * as Uploads from './core/uploads';
 import * as API from './resources/index';
 import { APIPromise } from './core/api-promise';
-import {
-  ObjectCreateParams,
-  ObjectCreateResponse,
-  ObjectDeleteResponse,
-  ObjectFindUniqueParams,
-  ObjectFindUniqueResponse,
-  ObjectListResponse,
-  ObjectRetrieveResponse,
-  ObjectUpdateParams,
-  ObjectUpdateResponse,
-  Objects,
-  UObject,
-} from './resources/objects/objects';
+import { Data } from './resources/data/data';
 import { type Fetch } from './internal/builtin-types';
 import { HeadersLike, NullableHeaders, buildHeaders } from './internal/headers';
 import { FinalRequestOptions, RequestOptions } from './internal/request-options';
@@ -126,7 +115,7 @@ export class Unify {
   baseURL: string;
   maxRetries: number;
   timeout: number;
-  logger: Logger | undefined;
+  logger: Logger;
   logLevel: LogLevel | undefined;
   fetchOptions: MergedRequestInit | undefined;
 
@@ -139,7 +128,7 @@ export class Unify {
    * API Client for interfacing with the Unify API.
    *
    * @param {string | undefined} [opts.apiKey=process.env['UNIFY_API_KEY'] ?? undefined]
-   * @param {string} [opts.baseURL=process.env['UNIFY_BASE_URL'] ?? https://api.unifygtm.com/data/v1] - Override the default base URL for the API.
+   * @param {string} [opts.baseURL=process.env['UNIFY_BASE_URL'] ?? https://api.unifygtm.com] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
    * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -161,7 +150,7 @@ export class Unify {
     const options: ClientOptions = {
       apiKey,
       ...opts,
-      baseURL: baseURL || `https://api.unifygtm.com/data/v1`,
+      baseURL: baseURL || `https://api.unifygtm.com`,
     };
 
     this.baseURL = options.baseURL!;
@@ -207,7 +196,7 @@ export class Unify {
    * Check whether the base URL is set to its default.
    */
   #baseURLOverridden(): boolean {
-    return this.baseURL !== 'https://api.unifygtm.com/data/v1';
+    return this.baseURL !== 'https://api.unifygtm.com';
   }
 
   protected defaultQuery(): Record<string, string | undefined> | undefined {
@@ -225,21 +214,8 @@ export class Unify {
   /**
    * Basic re-implementation of `qs.stringify` for primitive types.
    */
-  protected stringifyQuery(query: Record<string, unknown>): string {
-    return Object.entries(query)
-      .filter(([_, value]) => typeof value !== 'undefined')
-      .map(([key, value]) => {
-        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
-          return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
-        }
-        if (value === null) {
-          return `${encodeURIComponent(key)}=`;
-        }
-        throw new Errors.UnifyError(
-          `Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`,
-        );
-      })
-      .join('&');
+  protected stringifyQuery(query: object | Record<string, unknown>): string {
+    return stringifyQuery(query);
   }
 
   private getUserAgent(): string {
@@ -271,12 +247,13 @@ export class Unify {
       : new URL(baseURL + (baseURL.endsWith('/') && path.startsWith('/') ? path.slice(1) : path));
 
     const defaultQuery = this.defaultQuery();
-    if (!isEmptyObj(defaultQuery)) {
-      query = { ...defaultQuery, ...query };
+    const pathQuery = Object.fromEntries(url.searchParams);
+    if (!isEmptyObj(defaultQuery) || !isEmptyObj(pathQuery)) {
+      query = { ...pathQuery, ...defaultQuery, ...query };
     }
 
     if (typeof query === 'object' && query && !Array.isArray(query)) {
-      url.search = this.stringifyQuery(query as Record<string, unknown>);
+      url.search = this.stringifyQuery(query);
     }
 
     return url.toString();
@@ -460,7 +437,7 @@ export class Unify {
       loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
 
       const errText = await response.text().catch((err: any) => castToError(err).message);
-      const errJSON = safeJSON(errText);
+      const errJSON = safeJSON(errText) as any;
       const errMessage = errJSON ? undefined : errText;
 
       loggerFor(this).debug(
@@ -501,9 +478,10 @@ export class Unify {
     controller: AbortController,
   ): Promise<Response> {
     const { signal, method, ...options } = init || {};
-    if (signal) signal.addEventListener('abort', () => controller.abort());
+    const abort = this._makeAbort(controller);
+    if (signal) signal.addEventListener('abort', abort, { once: true });
 
-    const timeout = setTimeout(() => controller.abort(), ms);
+    const timeout = setTimeout(abort, ms);
 
     const isReadableBody =
       ((globalThis as any).ReadableStream && options.body instanceof (globalThis as any).ReadableStream) ||
@@ -580,9 +558,9 @@ export class Unify {
       }
     }
 
-    // If the API asks us to wait a certain amount of time (and it's a reasonable amount),
-    // just do what it says, but otherwise calculate a default
-    if (!(timeoutMillis && 0 <= timeoutMillis && timeoutMillis < 60 * 1000)) {
+    // If the API asks us to wait a certain amount of time, just do what it
+    // says, but otherwise calculate a default
+    if (timeoutMillis === undefined) {
       const maxRetries = options.maxRetries ?? this.maxRetries;
       timeoutMillis = this.calculateDefaultRetryTimeoutMillis(retriesRemaining, maxRetries);
     }
@@ -670,6 +648,12 @@ export class Unify {
     return headers.values;
   }
 
+  private _makeAbort(controller: AbortController) {
+    // note: we can't just inline this method inside `fetchWithTimeout()` because then the closure
+    //       would capture all request options, and cause a memory leak.
+    return () => controller.abort();
+  }
+
   private buildBody({ options: { body, headers: rawHeaders } }: { options: FinalRequestOptions }): {
     bodyHeaders: HeadersLike;
     body: BodyInit | undefined;
@@ -702,6 +686,14 @@ export class Unify {
         (Symbol.iterator in body && 'next' in body && typeof body.next === 'function'))
     ) {
       return { bodyHeaders: undefined, body: Shims.ReadableStreamFrom(body as AsyncIterable<Uint8Array>) };
+    } else if (
+      typeof body === 'object' &&
+      headers.values.get('content-type') === 'application/x-www-form-urlencoded'
+    ) {
+      return {
+        bodyHeaders: { 'content-type': 'application/x-www-form-urlencoded' },
+        body: this.stringifyQuery(body),
+      };
     } else {
       return this.#encoder({ body, headers });
     }
@@ -726,25 +718,13 @@ export class Unify {
 
   static toFile = Uploads.toFile;
 
-  objects: API.Objects = new API.Objects(this);
+  data: API.Data = new API.Data(this);
 }
 
-Unify.Objects = Objects;
+Unify.Data = Data;
 
 export declare namespace Unify {
   export type RequestOptions = Opts.RequestOptions;
 
-  export {
-    Objects as Objects,
-    type UObject as UObject,
-    type ObjectCreateResponse as ObjectCreateResponse,
-    type ObjectRetrieveResponse as ObjectRetrieveResponse,
-    type ObjectUpdateResponse as ObjectUpdateResponse,
-    type ObjectListResponse as ObjectListResponse,
-    type ObjectDeleteResponse as ObjectDeleteResponse,
-    type ObjectFindUniqueResponse as ObjectFindUniqueResponse,
-    type ObjectCreateParams as ObjectCreateParams,
-    type ObjectUpdateParams as ObjectUpdateParams,
-    type ObjectFindUniqueParams as ObjectFindUniqueParams,
-  };
+  export { Data as Data };
 }
