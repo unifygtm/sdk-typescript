@@ -64,6 +64,24 @@ Methods:
 
 Types:
 
+- <code><a href="./src/resources/data/records.ts">UAddress</a></code>
+- <code><a href="./src/resources/data/records.ts">UBoolean</a></code>
+- <code><a href="./src/resources/data/records.ts">UCountry</a></code>
+- <code><a href="./src/resources/data/records.ts">UCurrency</a></code>
+- <code><a href="./src/resources/data/records.ts">UDate</a></code>
+- <code><a href="./src/resources/data/records.ts">UDatetime</a></code>
+- <code><a href="./src/resources/data/records.ts">UDecimal</a></code>
+- <code><a href="./src/resources/data/records.ts">UEmail</a></code>
+- <code><a href="./src/resources/data/records.ts">UInteger</a></code>
+- <code><a href="./src/resources/data/records.ts">UMultiselect</a></code>
+- <code><a href="./src/resources/data/records.ts">UPhoneNumber</a></code>
+- <code><a href="./src/resources/data/records.ts">UReferenceByID</a></code>
+- <code><a href="./src/resources/data/records.ts">UReferenceByMatch</a></code>
+- <code><a href="./src/resources/data/records.ts">UReferenceByUpsert</a></code>
+- <code><a href="./src/resources/data/records.ts">USelect</a></code>
+- <code><a href="./src/resources/data/records.ts">UText</a></code>
+- <code><a href="./src/resources/data/records.ts">UURL</a></code>
+- <code><a href="./src/resources/data/records.ts">UUuid</a></code>
 - <code><a href="./src/resources/data/records.ts">ValidationMode</a></code>
 - <code><a href="./src/resources/data/records.ts">RecordCreateResponse</a></code>
 - <code><a href="./src/resources/data/records.ts">RecordRetrieveResponse</a></code>
