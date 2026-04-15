@@ -80,7 +80,7 @@ export interface UAddress {
   /**
    * State, province, region, or territory.
    */
-  administrativeArea?: string;
+  administrative_area?: string;
 
   /**
    * Composite object representing a country.
@@ -90,7 +90,7 @@ export interface UAddress {
   /**
    * Neighborhood, borough, district, or city sector.
    */
-  dependentLocality?: string;
+  dependent_locality?: string;
 
   /**
    * City, town, or village.
@@ -100,7 +100,7 @@ export interface UAddress {
   /**
    * Postal code or ZIP code.
    */
-  postalCode?: string;
+  postal_code?: string;
 
   /**
    * Street number or building name.
@@ -110,12 +110,12 @@ export interface UAddress {
   /**
    * County or other secondary governmental division of an administrative area.
    */
-  subAdministrativeArea?: string;
+  sub_administrative_area?: string;
 
   /**
    * Apartment, suite, office number, or other secondary unit designator.
    */
-  subPremise?: string;
+  sub_premise?: string;
 
   /**
    * Street name with elements such as street type or direction.
