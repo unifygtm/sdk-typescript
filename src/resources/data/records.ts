@@ -1,7 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import { APIResource } from '../../core/resource';
-import * as RecordsAPI from './records';
 import { APIPromise } from '../../core/api-promise';
 import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
@@ -127,6 +126,115 @@ export interface UAddress {
  * Boolean value.
  */
 export type UBoolean = boolean;
+
+/**
+ * Attribute key-value pairs associated with an object record.
+ */
+export interface UCompanyAttributes {
+  /**
+   * String value representing a web URL or internet domain.
+   */
+  domain: UURL;
+
+  /**
+   * Composite object representing a physical address.
+   */
+  address?: UAddress;
+
+  /**
+   * String value representing a phone number.
+   */
+  corporate_phone?: UPhoneNumber | null;
+
+  /**
+   * String value.
+   */
+  description?: UText | null;
+
+  /**
+   * Boolean value.
+   */
+  do_not_contact?: UBoolean | null;
+
+  /**
+   * Integer value.
+   */
+  employee_count?: UInteger | null;
+
+  /**
+   * String value representing a date.
+   */
+  founded?: UDate | null;
+
+  /**
+   * String value.
+   */
+  industry?: UText | null;
+
+  /**
+   * String value representing a datetime.
+   */
+  last_activity_at?: UDatetime | null;
+
+  /**
+   * String value.
+   */
+  lead_source?: UText | null;
+
+  /**
+   * String value representing a web URL or internet domain.
+   */
+  linkedin_url?: UURL | null;
+
+  /**
+   * String value.
+   */
+  name?: UText | null;
+
+  /**
+   * The user that owns the company record.
+   */
+  record_owner?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+
+  /**
+   * Composite object representing a currency value.
+   */
+  revenue?: UCurrency;
+
+  /**
+   * String value.
+   */
+  status?: UText | null;
+
+  /**
+   * String value.
+   */
+  time_zone?: UText | null;
+
+  [k: string]:
+    | UValue
+    | null
+    | UURL
+    | UAddress
+    | UPhoneNumber
+    | null
+    | UText
+    | null
+    | UBoolean
+    | null
+    | UInteger
+    | null
+    | UDate
+    | null
+    | UDatetime
+    | null
+    | UReferenceByID
+    | UReferenceByMatch
+    | UReferenceByUpsert
+    | null
+    | UCurrency
+    | undefined;
+}
 
 /**
  * Composite object representing a country.
@@ -616,9 +724,228 @@ export type UInteger = number;
 export type UMultiselect = Array<string>;
 
 /**
+ * Attribute key-value pairs associated with an object record.
+ */
+export interface UOpportunityAttributes {
+  /**
+   * String value.
+   */
+  name: UText;
+
+  /**
+   * String value.
+   */
+  uniqueness_key: UText;
+
+  /**
+   * Composite object representing a currency value.
+   */
+  amount?: UCurrency;
+
+  /**
+   * Company associated with the opportunity.
+   */
+  company?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+
+  /**
+   * String value.
+   */
+  lead_source?: UText | null;
+
+  /**
+   * String value.
+   */
+  opportunity_type?: UText | null;
+
+  /**
+   * String value representing a datetime.
+   */
+  original_created_at?: UDatetime | null;
+
+  /**
+   * Person associated with the opportunity.
+   */
+  person?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+
+  /**
+   * The user that owns the opportunity record.
+   */
+  record_owner?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+
+  /**
+   * String value.
+   */
+  stage?: UText | null;
+
+  [k: string]:
+    | UValue
+    | null
+    | UText
+    | UCurrency
+    | UReferenceByID
+    | UReferenceByMatch
+    | UReferenceByUpsert
+    | null
+    | UDatetime
+    | null
+    | undefined;
+}
+
+/**
+ * Attribute key-value pairs associated with an object record.
+ */
+export interface UPersonAttributes {
+  /**
+   * String value representing an email address.
+   */
+  email: UEmail;
+
+  /**
+   * Composite object representing a physical address.
+   */
+  address?: UAddress;
+
+  /**
+   * Company associated with the person.
+   */
+  company?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+
+  /**
+   * String value representing a phone number.
+   */
+  corporate_phone?: UPhoneNumber | null;
+
+  /**
+   * Boolean value.
+   */
+  do_not_call?: UBoolean | null;
+
+  /**
+   * Boolean value.
+   */
+  do_not_email?: UBoolean | null;
+
+  /**
+   * Boolean value.
+   */
+  email_opt_out?: UBoolean | null;
+
+  /**
+   * Boolean value.
+   */
+  eu_resident?: UBoolean | null;
+
+  /**
+   * String value.
+   */
+  first_name?: UText | null;
+
+  /**
+   * String value representing a datetime.
+   */
+  last_activity_at?: UDatetime | null;
+
+  /**
+   * String value.
+   */
+  last_name?: UText | null;
+
+  /**
+   * String value.
+   */
+  lead_source?: UText | null;
+
+  /**
+   * String value representing a web URL or internet domain.
+   */
+  linkedin_url?: UURL | null;
+
+  /**
+   * String value representing a phone number.
+   */
+  mobile_phone?: UPhoneNumber | null;
+
+  /**
+   * The user that owns the person record.
+   */
+  record_owner?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+
+  /**
+   * String value.
+   */
+  status?: UText | null;
+
+  /**
+   * String value.
+   */
+  title?: UText | null;
+
+  /**
+   * String value representing a phone number.
+   */
+  work_phone?: UPhoneNumber | null;
+
+  [k: string]:
+    | UValue
+    | null
+    | UEmail
+    | UAddress
+    | UReferenceByID
+    | UReferenceByMatch
+    | UReferenceByUpsert
+    | null
+    | UPhoneNumber
+    | null
+    | UBoolean
+    | null
+    | UText
+    | null
+    | UDatetime
+    | null
+    | UURL
+    | null
+    | undefined;
+}
+
+/**
  * String value representing a phone number.
  */
 export type UPhoneNumber = string;
+
+/**
+ * Object record with its associated metadata and attribute key-value pairs.
+ */
+export interface URecord {
+  /**
+   * String UUIDv4 value.
+   */
+  id: UUuid;
+
+  /**
+   * Attribute key-value pairs associated with an object record.
+   */
+  attributes: URecordAttributes;
+
+  /**
+   * Date and time the record was created.
+   */
+  created_at: string;
+
+  /**
+   * The API name of the object this record is an instance of.
+   */
+  object: string;
+
+  /**
+   * Date and time the record was last updated.
+   */
+  updated_at: string;
+}
+
+/**
+ * Attribute key-value pairs associated with an object record.
+ */
+export type URecordAttributes = { [key: string]: UValue | null };
 
 /**
  * Reference to another object record by ID.
@@ -734,6 +1061,21 @@ export type UURL = string;
 export type UUuid = string;
 
 /**
+ * Composite object representing a physical address.
+ */
+export type UValue =
+  | UAddress
+  | UBoolean
+  | UCountry
+  | UCurrency
+  | UDate
+  | UDecimal
+  | UMultiselect
+  | UReferenceByID
+  | UReferenceByMatch
+  | UReferenceByUpsert;
+
+/**
  * Validation mode to use when validating request data.
  *
  * `strict` validation will fail requests if any attribute fails validation,
@@ -750,156 +1092,36 @@ export type ValidationMode = 'strict' | 'ignore_invalid';
  * Response for a successful create operation.
  */
 export interface RecordCreateResponse {
-  data: RecordCreateResponse.Data;
+  /**
+   * Object record with its associated metadata and attribute key-value pairs.
+   */
+  data: URecord;
 
   status: 'success';
-}
-
-export namespace RecordCreateResponse {
-  export interface Data {
-    /**
-     * String UUIDv4 value.
-     */
-    id: RecordsAPI.UUuid;
-
-    /**
-     * Attribute values for the record. Each key is the API name of the attribute and
-     * each value is the corresponding attribute value for the record.
-     */
-    attributes: {
-      [key: string]:
-        | RecordsAPI.UAddress
-        | RecordsAPI.UBoolean
-        | RecordsAPI.UCountry
-        | RecordsAPI.UCurrency
-        | RecordsAPI.UDate
-        | RecordsAPI.UDecimal
-        | RecordsAPI.UMultiselect
-        | RecordsAPI.UReferenceByID
-        | RecordsAPI.UReferenceByMatch
-        | RecordsAPI.UReferenceByUpsert
-        | null;
-    };
-
-    /**
-     * Date and time the record was created.
-     */
-    created_at: string;
-
-    /**
-     * The API name of the object this record is an instance of.
-     */
-    object: string;
-
-    /**
-     * Date and time the record was last updated.
-     */
-    updated_at: string;
-  }
 }
 
 /**
  * Response for a successful get operation.
  */
 export interface RecordRetrieveResponse {
-  data: RecordRetrieveResponse.Data;
+  /**
+   * Object record with its associated metadata and attribute key-value pairs.
+   */
+  data: URecord;
 
   status: 'success';
-}
-
-export namespace RecordRetrieveResponse {
-  export interface Data {
-    /**
-     * String UUIDv4 value.
-     */
-    id: RecordsAPI.UUuid;
-
-    /**
-     * Attribute values for the record. Each key is the API name of the attribute and
-     * each value is the corresponding attribute value for the record.
-     */
-    attributes: {
-      [key: string]:
-        | RecordsAPI.UAddress
-        | RecordsAPI.UBoolean
-        | RecordsAPI.UCountry
-        | RecordsAPI.UCurrency
-        | RecordsAPI.UDate
-        | RecordsAPI.UDecimal
-        | RecordsAPI.UMultiselect
-        | RecordsAPI.UReferenceByID
-        | RecordsAPI.UReferenceByMatch
-        | RecordsAPI.UReferenceByUpsert
-        | null;
-    };
-
-    /**
-     * Date and time the record was created.
-     */
-    created_at: string;
-
-    /**
-     * The API name of the object this record is an instance of.
-     */
-    object: string;
-
-    /**
-     * Date and time the record was last updated.
-     */
-    updated_at: string;
-  }
 }
 
 /**
  * Response for a successful update operation.
  */
 export interface RecordUpdateResponse {
-  data: RecordUpdateResponse.Data;
+  /**
+   * Object record with its associated metadata and attribute key-value pairs.
+   */
+  data: URecord;
 
   status: 'success';
-}
-
-export namespace RecordUpdateResponse {
-  export interface Data {
-    /**
-     * String UUIDv4 value.
-     */
-    id: RecordsAPI.UUuid;
-
-    /**
-     * Attribute values for the record. Each key is the API name of the attribute and
-     * each value is the corresponding attribute value for the record.
-     */
-    attributes: {
-      [key: string]:
-        | RecordsAPI.UAddress
-        | RecordsAPI.UBoolean
-        | RecordsAPI.UCountry
-        | RecordsAPI.UCurrency
-        | RecordsAPI.UDate
-        | RecordsAPI.UDecimal
-        | RecordsAPI.UMultiselect
-        | RecordsAPI.UReferenceByID
-        | RecordsAPI.UReferenceByMatch
-        | RecordsAPI.UReferenceByUpsert
-        | null;
-    };
-
-    /**
-     * Date and time the record was created.
-     */
-    created_at: string;
-
-    /**
-     * The API name of the object this record is an instance of.
-     */
-    object: string;
-
-    /**
-     * Date and time the record was last updated.
-     */
-    updated_at: string;
-  }
 }
 
 /**
@@ -913,125 +1135,31 @@ export interface RecordDeleteResponse {
  * Response for a successful get operation.
  */
 export interface RecordFindUniqueResponse {
-  data: RecordFindUniqueResponse.Data | null;
+  /**
+   * Object record with its associated metadata and attribute key-value pairs.
+   */
+  data: URecord | null;
 
   status: 'success';
-}
-
-export namespace RecordFindUniqueResponse {
-  export interface Data {
-    /**
-     * String UUIDv4 value.
-     */
-    id: RecordsAPI.UUuid;
-
-    /**
-     * Attribute values for the record. Each key is the API name of the attribute and
-     * each value is the corresponding attribute value for the record.
-     */
-    attributes: {
-      [key: string]:
-        | RecordsAPI.UAddress
-        | RecordsAPI.UBoolean
-        | RecordsAPI.UCountry
-        | RecordsAPI.UCurrency
-        | RecordsAPI.UDate
-        | RecordsAPI.UDecimal
-        | RecordsAPI.UMultiselect
-        | RecordsAPI.UReferenceByID
-        | RecordsAPI.UReferenceByMatch
-        | RecordsAPI.UReferenceByUpsert
-        | null;
-    };
-
-    /**
-     * Date and time the record was created.
-     */
-    created_at: string;
-
-    /**
-     * The API name of the object this record is an instance of.
-     */
-    object: string;
-
-    /**
-     * Date and time the record was last updated.
-     */
-    updated_at: string;
-  }
 }
 
 /**
  * Response for a successful update operation.
  */
 export interface RecordUpsertResponse {
-  data: RecordUpsertResponse.Data;
+  /**
+   * Object record with its associated metadata and attribute key-value pairs.
+   */
+  data: URecord;
 
   status: 'success';
 }
 
-export namespace RecordUpsertResponse {
-  export interface Data {
-    /**
-     * String UUIDv4 value.
-     */
-    id: RecordsAPI.UUuid;
-
-    /**
-     * Attribute values for the record. Each key is the API name of the attribute and
-     * each value is the corresponding attribute value for the record.
-     */
-    attributes: {
-      [key: string]:
-        | RecordsAPI.UAddress
-        | RecordsAPI.UBoolean
-        | RecordsAPI.UCountry
-        | RecordsAPI.UCurrency
-        | RecordsAPI.UDate
-        | RecordsAPI.UDecimal
-        | RecordsAPI.UMultiselect
-        | RecordsAPI.UReferenceByID
-        | RecordsAPI.UReferenceByMatch
-        | RecordsAPI.UReferenceByUpsert
-        | null;
-    };
-
-    /**
-     * Date and time the record was created.
-     */
-    created_at: string;
-
-    /**
-     * The API name of the object this record is an instance of.
-     */
-    object: string;
-
-    /**
-     * Date and time the record was last updated.
-     */
-    updated_at: string;
-  }
-}
-
 export interface RecordCreateParams {
   /**
-   * Body param: The attribute values for the new record.
-   *
-   * All required attributes on the object must be included.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  data: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  data: URecordAttributes;
 
   /**
    * Query param: Validation mode to use when validating request data.
@@ -1058,21 +1186,9 @@ export interface RecordUpdateParams {
   object_name: string;
 
   /**
-   * Body param: The attribute values to update in the record.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  data: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  data: URecordAttributes;
 
   /**
    * Query param: Validation mode to use when validating request data.
@@ -1094,50 +1210,16 @@ export interface RecordDeleteParams {
 
 export interface RecordFindUniqueParams {
   /**
-   * The attribute values to match against to find an existing record.
-   *
-   * At least one unique attribute must be included to ensure that at most one record
-   * is matched. Additional unique or non-unique attributes may also be included to
-   * refine the matching criteria.
+   * Attribute key-value pairs associated with an object record.
    */
-  match: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert
-      | null;
-  };
+  match: URecordAttributes;
 }
 
 export interface RecordUpsertParams {
   /**
-   * Body param: The attribute values to match against to find an existing record.
-   *
-   * At least one unique attribute must be included to ensure that at most one record
-   * is matched. Additional unique or non-unique attributes may also be included to
-   * refine the matching criteria.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  match: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert
-      | null;
-  };
+  match: URecordAttributes;
 
   /**
    * Query param: Validation mode to use when validating request data.
@@ -1153,100 +1235,36 @@ export interface RecordUpsertParams {
   validation_mode?: ValidationMode;
 
   /**
-   * Body param: The attribute values to use when creating a new record if no match
-   * is found.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  create?: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  create?: URecordAttributes;
 
   /**
-   * Body param: The attribute values to apply during both creation and update
-   * operations.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  create_or_update?: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  create_or_update?: URecordAttributes;
 
   /**
-   * Body param: The attribute values to apply during both creation and
-   * update-if-empty operations.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  create_or_update_if_empty?: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  create_or_update_if_empty?: URecordAttributes;
 
   /**
-   * Body param: The attribute values to use when updating an existing record if a
-   * match is found.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  update?: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  update?: URecordAttributes;
 
   /**
-   * Body param: The attribute values to update when a matching record is found and
-   * the existing attribute value on the record is `null`.
+   * Body param: Attribute key-value pairs associated with an object record.
    */
-  update_if_empty?: {
-    [key: string]:
-      | UAddress
-      | UBoolean
-      | UCountry
-      | UCurrency
-      | UDate
-      | UDecimal
-      | UMultiselect
-      | UReferenceByID
-      | UReferenceByMatch
-      | UReferenceByUpsert;
-  };
+  update_if_empty?: URecordAttributes;
 }
 
 export declare namespace Records {
   export {
     type UAddress as UAddress,
     type UBoolean as UBoolean,
+    type UCompanyAttributes as UCompanyAttributes,
     type UCountry as UCountry,
     type UCurrency as UCurrency,
     type UDate as UDate,
@@ -1255,7 +1273,11 @@ export declare namespace Records {
     type UEmail as UEmail,
     type UInteger as UInteger,
     type UMultiselect as UMultiselect,
+    type UOpportunityAttributes as UOpportunityAttributes,
+    type UPersonAttributes as UPersonAttributes,
     type UPhoneNumber as UPhoneNumber,
+    type URecord as URecord,
+    type URecordAttributes as URecordAttributes,
     type UReferenceByID as UReferenceByID,
     type UReferenceByMatch as UReferenceByMatch,
     type UReferenceByUpsert as UReferenceByUpsert,
@@ -1263,6 +1285,7 @@ export declare namespace Records {
     type UText as UText,
     type UURL as UURL,
     type UUuid as UUuid,
+    type UValue as UValue,
     type ValidationMode as ValidationMode,
     type RecordCreateResponse as RecordCreateResponse,
     type RecordRetrieveResponse as RecordRetrieveResponse,
