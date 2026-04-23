@@ -945,7 +945,7 @@ export interface URecord {
 /**
  * Attribute key-value pairs associated with an object record.
  */
-export type URecordAttributes = { [key: string]: UValue | null };
+export type URecordAttributes = { [key: string]: UValue | null | undefined };
 
 /**
  * Reference to another object record by ID.
@@ -1069,11 +1069,19 @@ export type UValue =
   | UCountry
   | UCurrency
   | UDate
+  | UDatetime
   | UDecimal
+  | UEmail
+  | UInteger
   | UMultiselect
+  | UPhoneNumber
   | UReferenceByID
   | UReferenceByMatch
-  | UReferenceByUpsert;
+  | UReferenceByUpsert
+  | USelect
+  | UText
+  | UURL
+  | UUuid;
 
 /**
  * Validation mode to use when validating request data.
