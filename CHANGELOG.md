@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.2 (2026-04-23)
+
+Full Changelog: [v0.1.1...v0.1.2](https://github.com/unifygtm/sdk-typescript/compare/v0.1.1...v0.1.2)
+
+### Refactors
+
+* **api:** Revert submodules ([e4b41c1](https://github.com/unifygtm/sdk-typescript/commit/e4b41c13fe6c0c06c27bfb63745c35aedac1e6e1))
+
 ## 0.1.1 (2026-04-23)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/unifygtm/sdk-typescript/compare/v0.1.0...v0.1.1)
