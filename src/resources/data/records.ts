@@ -75,7 +75,7 @@ export class Records extends APIResource {
 /**
  * Composite object representing a physical address.
  */
-export interface UAddress {
+export interface Address {
   /**
    * State, province, region, or territory.
    */
@@ -84,7 +84,7 @@ export interface UAddress {
   /**
    * Composite object representing a country.
    */
-  country?: UCountry;
+  country?: Country;
 
   /**
    * Neighborhood, borough, district, or city sector.
@@ -125,121 +125,121 @@ export interface UAddress {
 /**
  * Boolean value.
  */
-export type UBoolean = boolean;
+export type Boolean = boolean;
 
 /**
  * Attribute key-value pairs associated with an object record.
  */
-export interface UCompanyAttributes {
+export interface CompanyAttributes {
   /**
    * String value representing a web URL or internet domain.
    */
-  domain: UURL;
+  domain: URL;
 
   /**
    * Composite object representing a physical address.
    */
-  address?: UAddress;
+  address?: Address;
 
   /**
    * String value representing a phone number.
    */
-  corporate_phone?: UPhoneNumber | null;
+  corporate_phone?: PhoneNumber | null;
 
   /**
    * String value.
    */
-  description?: UText | null;
+  description?: Text | null;
 
   /**
    * Boolean value.
    */
-  do_not_contact?: UBoolean | null;
+  do_not_contact?: Boolean | null;
 
   /**
    * Integer value.
    */
-  employee_count?: UInteger | null;
+  employee_count?: Integer | null;
 
   /**
    * String value representing a date.
    */
-  founded?: UDate | null;
+  founded?: Date | null;
 
   /**
    * String value.
    */
-  industry?: UText | null;
+  industry?: Text | null;
 
   /**
    * String value representing a datetime.
    */
-  last_activity_at?: UDatetime | null;
+  last_activity_at?: Datetime | null;
 
   /**
    * String value.
    */
-  lead_source?: UText | null;
+  lead_source?: Text | null;
 
   /**
    * String value representing a web URL or internet domain.
    */
-  linkedin_url?: UURL | null;
+  linkedin_url?: URL | null;
 
   /**
    * String value.
    */
-  name?: UText | null;
+  name?: Text | null;
 
   /**
    * The user that owns the company record.
    */
-  record_owner?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+  record_owner?: ReferenceByID | ReferenceByMatch | ReferenceByUpsert | null;
 
   /**
    * Composite object representing a currency value.
    */
-  revenue?: UCurrency;
+  revenue?: Currency;
 
   /**
    * String value.
    */
-  status?: UText | null;
+  status?: Text | null;
 
   /**
    * String value.
    */
-  time_zone?: UText | null;
+  time_zone?: Text | null;
 
   [k: string]:
-    | UValue
+    | Value
     | null
-    | UURL
-    | UAddress
-    | UPhoneNumber
+    | URL
+    | Address
+    | PhoneNumber
     | null
-    | UText
+    | Text
     | null
-    | UBoolean
+    | Boolean
     | null
-    | UInteger
+    | Integer
     | null
-    | UDate
+    | Date
     | null
-    | UDatetime
+    | Datetime
     | null
-    | UReferenceByID
-    | UReferenceByMatch
-    | UReferenceByUpsert
+    | ReferenceByID
+    | ReferenceByMatch
+    | ReferenceByUpsert
     | null
-    | UCurrency
+    | Currency
     | undefined;
 }
 
 /**
  * Composite object representing a country.
  */
-export interface UCountry {
+export interface Country {
   /**
    * ISO 3166-1 alpha-2 country code.
    */
@@ -504,7 +504,7 @@ export interface UCountry {
 /**
  * Composite object representing a currency value.
  */
-export interface UCurrency {
+export interface Currency {
   /**
    * ISO 4217 currency code.
    */
@@ -696,97 +696,97 @@ export interface UCurrency {
 /**
  * String value representing a date.
  */
-export type UDate = string;
+export type Date = string;
 
 /**
  * String value representing a datetime.
  */
-export type UDatetime = string;
+export type Datetime = string;
 
 /**
  * Decimal value.
  */
-export type UDecimal = number;
+export type Decimal = number;
 
 /**
  * String value representing an email address.
  */
-export type UEmail = string;
+export type Email = string;
 
 /**
  * Integer value.
  */
-export type UInteger = number;
+export type Integer = number;
 
 /**
  * String array that contains strings from a specific set of allowed values.
  */
-export type UMultiselect = Array<string>;
+export type Multiselect = Array<string>;
 
 /**
  * Attribute key-value pairs associated with an object record.
  */
-export interface UOpportunityAttributes {
+export interface OpportunityAttributes {
   /**
    * String value.
    */
-  name: UText;
+  name: Text;
 
   /**
    * String value.
    */
-  uniqueness_key: UText;
+  uniqueness_key: Text;
 
   /**
    * Composite object representing a currency value.
    */
-  amount?: UCurrency;
+  amount?: Currency;
 
   /**
    * Company associated with the opportunity.
    */
-  company?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+  company?: ReferenceByID | ReferenceByMatch | ReferenceByUpsert | null;
 
   /**
    * String value.
    */
-  lead_source?: UText | null;
+  lead_source?: Text | null;
 
   /**
    * String value.
    */
-  opportunity_type?: UText | null;
+  opportunity_type?: Text | null;
 
   /**
    * String value representing a datetime.
    */
-  original_created_at?: UDatetime | null;
+  original_created_at?: Datetime | null;
 
   /**
    * Person associated with the opportunity.
    */
-  person?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+  person?: ReferenceByID | ReferenceByMatch | ReferenceByUpsert | null;
 
   /**
    * The user that owns the opportunity record.
    */
-  record_owner?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+  record_owner?: ReferenceByID | ReferenceByMatch | ReferenceByUpsert | null;
 
   /**
    * String value.
    */
-  stage?: UText | null;
+  stage?: Text | null;
 
   [k: string]:
-    | UValue
+    | Value
     | null
-    | UText
-    | UCurrency
-    | UReferenceByID
-    | UReferenceByMatch
-    | UReferenceByUpsert
+    | Text
+    | Currency
+    | ReferenceByID
+    | ReferenceByMatch
+    | ReferenceByUpsert
     | null
-    | UDatetime
+    | Datetime
     | null
     | undefined;
 }
@@ -794,115 +794,115 @@ export interface UOpportunityAttributes {
 /**
  * Attribute key-value pairs associated with an object record.
  */
-export interface UPersonAttributes {
+export interface PersonAttributes {
   /**
    * String value representing an email address.
    */
-  email: UEmail;
+  email: Email;
 
   /**
    * Composite object representing a physical address.
    */
-  address?: UAddress;
+  address?: Address;
 
   /**
    * Company associated with the person.
    */
-  company?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+  company?: ReferenceByID | ReferenceByMatch | ReferenceByUpsert | null;
 
   /**
    * String value representing a phone number.
    */
-  corporate_phone?: UPhoneNumber | null;
+  corporate_phone?: PhoneNumber | null;
 
   /**
    * Boolean value.
    */
-  do_not_call?: UBoolean | null;
+  do_not_call?: Boolean | null;
 
   /**
    * Boolean value.
    */
-  do_not_email?: UBoolean | null;
+  do_not_email?: Boolean | null;
 
   /**
    * Boolean value.
    */
-  email_opt_out?: UBoolean | null;
+  email_opt_out?: Boolean | null;
 
   /**
    * Boolean value.
    */
-  eu_resident?: UBoolean | null;
+  eu_resident?: Boolean | null;
 
   /**
    * String value.
    */
-  first_name?: UText | null;
+  first_name?: Text | null;
 
   /**
    * String value representing a datetime.
    */
-  last_activity_at?: UDatetime | null;
+  last_activity_at?: Datetime | null;
 
   /**
    * String value.
    */
-  last_name?: UText | null;
+  last_name?: Text | null;
 
   /**
    * String value.
    */
-  lead_source?: UText | null;
+  lead_source?: Text | null;
 
   /**
    * String value representing a web URL or internet domain.
    */
-  linkedin_url?: UURL | null;
+  linkedin_url?: URL | null;
 
   /**
    * String value representing a phone number.
    */
-  mobile_phone?: UPhoneNumber | null;
+  mobile_phone?: PhoneNumber | null;
 
   /**
    * The user that owns the person record.
    */
-  record_owner?: UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null;
+  record_owner?: ReferenceByID | ReferenceByMatch | ReferenceByUpsert | null;
 
   /**
    * String value.
    */
-  status?: UText | null;
+  status?: Text | null;
 
   /**
    * String value.
    */
-  title?: UText | null;
+  title?: Text | null;
 
   /**
    * String value representing a phone number.
    */
-  work_phone?: UPhoneNumber | null;
+  work_phone?: PhoneNumber | null;
 
   [k: string]:
-    | UValue
+    | Value
     | null
-    | UEmail
-    | UAddress
-    | UReferenceByID
-    | UReferenceByMatch
-    | UReferenceByUpsert
+    | Email
+    | Address
+    | ReferenceByID
+    | ReferenceByMatch
+    | ReferenceByUpsert
     | null
-    | UPhoneNumber
+    | PhoneNumber
     | null
-    | UBoolean
+    | Boolean
     | null
-    | UText
+    | Text
     | null
-    | UDatetime
+    | Datetime
     | null
-    | UURL
+    | URL
     | null
     | undefined;
 }
@@ -910,21 +910,21 @@ export interface UPersonAttributes {
 /**
  * String value representing a phone number.
  */
-export type UPhoneNumber = string;
+export type PhoneNumber = string;
 
 /**
  * Object record with its associated metadata and attribute key-value pairs.
  */
-export interface URecord {
+export interface Record {
   /**
    * String UUIDv4 value.
    */
-  id: UUuid;
+  id: Uuid;
 
   /**
    * Attribute key-value pairs associated with an object record.
    */
-  attributes: URecordAttributes;
+  attributes: RecordAttributes;
 
   /**
    * Date and time the record was created.
@@ -945,7 +945,7 @@ export interface URecord {
 /**
  * Attribute key-value pairs associated with an object record.
  */
-export type URecordAttributes = { [key: string]: UValue | null };
+export type RecordAttributes = { [key: string]: Value | null };
 
 /**
  * Reference to another object record by ID.
@@ -953,11 +953,11 @@ export type URecordAttributes = { [key: string]: UValue | null };
  * This will find an existing record by its ID, and an error will be returned if
  * the record does not exist.
  */
-export interface UReferenceByID {
+export interface ReferenceByID {
   /**
    * String UUIDv4 value.
    */
-  id: UUuid;
+  id: Uuid;
 }
 
 /**
@@ -966,7 +966,7 @@ export interface UReferenceByID {
  * This will find an existing record using the provided match criteria, and `null`
  * will be returned if no match is found.
  */
-export interface UReferenceByMatch {
+export interface ReferenceByMatch {
   /**
    * The attribute values to match against to find an existing record.
    *
@@ -1001,7 +1001,7 @@ export interface UReferenceByMatch {
  * 3. `update_if_empty`
  * 4. `create_or_update_if_empty`
  */
-export interface UReferenceByUpsert {
+export interface ReferenceByUpsert {
   /**
    * The attribute values to match against to find an existing record.
    *
@@ -1043,37 +1043,22 @@ export interface UReferenceByUpsert {
 /**
  * String value that matches one of a specific set of allowed values.
  */
-export type USelect = string;
+export type Select = string;
 
 /**
  * String value.
  */
-export type UText = string;
+export type Text = string;
 
 /**
  * String value representing a web URL or internet domain.
  */
-export type UURL = string;
+export type URL = string;
 
 /**
  * String UUIDv4 value.
  */
-export type UUuid = string;
-
-/**
- * Composite object representing a physical address.
- */
-export type UValue =
-  | UAddress
-  | UBoolean
-  | UCountry
-  | UCurrency
-  | UDate
-  | UDecimal
-  | UMultiselect
-  | UReferenceByID
-  | UReferenceByMatch
-  | UReferenceByUpsert;
+export type Uuid = string;
 
 /**
  * Validation mode to use when validating request data.
@@ -1089,13 +1074,28 @@ export type UValue =
 export type ValidationMode = 'strict' | 'ignore_invalid';
 
 /**
+ * Composite object representing a physical address.
+ */
+export type Value =
+  | Address
+  | Boolean
+  | Country
+  | Currency
+  | Date
+  | Decimal
+  | Multiselect
+  | ReferenceByID
+  | ReferenceByMatch
+  | ReferenceByUpsert;
+
+/**
  * Response for a successful create operation.
  */
 export interface RecordCreateResponse {
   /**
    * Object record with its associated metadata and attribute key-value pairs.
    */
-  data: URecord;
+  data: Record;
 
   status: 'success';
 }
@@ -1107,7 +1107,7 @@ export interface RecordRetrieveResponse {
   /**
    * Object record with its associated metadata and attribute key-value pairs.
    */
-  data: URecord;
+  data: Record;
 
   status: 'success';
 }
@@ -1119,7 +1119,7 @@ export interface RecordUpdateResponse {
   /**
    * Object record with its associated metadata and attribute key-value pairs.
    */
-  data: URecord;
+  data: Record;
 
   status: 'success';
 }
@@ -1138,7 +1138,7 @@ export interface RecordFindUniqueResponse {
   /**
    * Object record with its associated metadata and attribute key-value pairs.
    */
-  data: URecord | null;
+  data: Record | null;
 
   status: 'success';
 }
@@ -1150,7 +1150,7 @@ export interface RecordUpsertResponse {
   /**
    * Object record with its associated metadata and attribute key-value pairs.
    */
-  data: URecord;
+  data: Record;
 
   status: 'success';
 }
@@ -1159,7 +1159,7 @@ export interface RecordCreateParams {
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  data: URecordAttributes;
+  data: RecordAttributes;
 
   /**
    * Query param: Validation mode to use when validating request data.
@@ -1188,7 +1188,7 @@ export interface RecordUpdateParams {
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  data: URecordAttributes;
+  data: RecordAttributes;
 
   /**
    * Query param: Validation mode to use when validating request data.
@@ -1212,14 +1212,14 @@ export interface RecordFindUniqueParams {
   /**
    * Attribute key-value pairs associated with an object record.
    */
-  match: URecordAttributes;
+  match: RecordAttributes;
 }
 
 export interface RecordUpsertParams {
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  match: URecordAttributes;
+  match: RecordAttributes;
 
   /**
    * Query param: Validation mode to use when validating request data.
@@ -1237,56 +1237,56 @@ export interface RecordUpsertParams {
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  create?: URecordAttributes;
+  create?: RecordAttributes;
 
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  create_or_update?: URecordAttributes;
+  create_or_update?: RecordAttributes;
 
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  create_or_update_if_empty?: URecordAttributes;
+  create_or_update_if_empty?: RecordAttributes;
 
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  update?: URecordAttributes;
+  update?: RecordAttributes;
 
   /**
    * Body param: Attribute key-value pairs associated with an object record.
    */
-  update_if_empty?: URecordAttributes;
+  update_if_empty?: RecordAttributes;
 }
 
 export declare namespace Records {
   export {
-    type UAddress as UAddress,
-    type UBoolean as UBoolean,
-    type UCompanyAttributes as UCompanyAttributes,
-    type UCountry as UCountry,
-    type UCurrency as UCurrency,
-    type UDate as UDate,
-    type UDatetime as UDatetime,
-    type UDecimal as UDecimal,
-    type UEmail as UEmail,
-    type UInteger as UInteger,
-    type UMultiselect as UMultiselect,
-    type UOpportunityAttributes as UOpportunityAttributes,
-    type UPersonAttributes as UPersonAttributes,
-    type UPhoneNumber as UPhoneNumber,
-    type URecord as URecord,
-    type URecordAttributes as URecordAttributes,
-    type UReferenceByID as UReferenceByID,
-    type UReferenceByMatch as UReferenceByMatch,
-    type UReferenceByUpsert as UReferenceByUpsert,
-    type USelect as USelect,
-    type UText as UText,
-    type UURL as UURL,
-    type UUuid as UUuid,
-    type UValue as UValue,
+    type Address as Address,
+    type Boolean as Boolean,
+    type CompanyAttributes as CompanyAttributes,
+    type Country as Country,
+    type Currency as Currency,
+    type Date as Date,
+    type Datetime as Datetime,
+    type Decimal as Decimal,
+    type Email as Email,
+    type Integer as Integer,
+    type Multiselect as Multiselect,
+    type OpportunityAttributes as OpportunityAttributes,
+    type PersonAttributes as PersonAttributes,
+    type PhoneNumber as PhoneNumber,
+    type Record as Record,
+    type RecordAttributes as RecordAttributes,
+    type ReferenceByID as ReferenceByID,
+    type ReferenceByMatch as ReferenceByMatch,
+    type ReferenceByUpsert as ReferenceByUpsert,
+    type Select as Select,
+    type Text as Text,
+    type URL as URL,
+    type Uuid as Uuid,
     type ValidationMode as ValidationMode,
+    type Value as Value,
     type RecordCreateResponse as RecordCreateResponse,
     type RecordRetrieveResponse as RecordRetrieveResponse,
     type RecordUpdateResponse as RecordUpdateResponse,
