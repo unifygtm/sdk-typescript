@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.1 (2026-04-23)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/unifygtm/sdk-typescript/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* **internal:** more robust bootstrap script ([234eb16](https://github.com/unifygtm/sdk-typescript/commit/234eb16a1ca6bbc6547e3c89de24de3020e51f6c))
+
+
+### Refactors
+
+* **api:** Rename submodules ([8dc1a23](https://github.com/unifygtm/sdk-typescript/commit/8dc1a2321552dd9b5b397b5322641cfde3133f54))
+
 ## 0.1.0 (2026-04-22)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/unifygtm/sdk-typescript/compare/v0.0.1...v0.1.0)
