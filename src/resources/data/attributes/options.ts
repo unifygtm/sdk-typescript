@@ -6,64 +6,29 @@ import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
 
 export class Options extends APIResource {
-  create(
-    attributeName: string,
-    params: OptionCreateParams,
-    options?: RequestOptions,
-  ): APIPromise<OptionCreateResponse> {
-    const { object_name, ...body } = params;
-    return this._client.post(path`/data/v1/objects/${object_name}/attributes/${attributeName}/options`, {
-      body,
-      ...options,
-    });
+  create(attributeName: string, params: OptionCreateParams, options?: RequestOptions): APIPromise<OptionCreateResponse> {
+    const { object_name, ...body } = params
+    return this._client.post(path`/data/v1/objects/${object_name}/attributes/${attributeName}/options`, { body, ...options });
   }
 
-  retrieve(
-    optionName: string,
-    params: OptionRetrieveParams,
-    options?: RequestOptions,
-  ): APIPromise<OptionRetrieveResponse> {
-    const { object_name, attribute_name } = params;
-    return this._client.get(
-      path`/data/v1/objects/${object_name}/attributes/${attribute_name}/options/${optionName}`,
-      options,
-    );
+  retrieve(optionName: string, params: OptionRetrieveParams, options?: RequestOptions): APIPromise<OptionRetrieveResponse> {
+    const { object_name, attribute_name } = params
+    return this._client.get(path`/data/v1/objects/${object_name}/attributes/${attribute_name}/options/${optionName}`, options);
   }
 
-  update(
-    optionName: string,
-    params: OptionUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<OptionUpdateResponse> {
-    const { object_name, attribute_name, ...body } = params;
-    return this._client.patch(
-      path`/data/v1/objects/${object_name}/attributes/${attribute_name}/options/${optionName}`,
-      { body, ...options },
-    );
+  update(optionName: string, params: OptionUpdateParams, options?: RequestOptions): APIPromise<OptionUpdateResponse> {
+    const { object_name, attribute_name, ...body } = params
+    return this._client.patch(path`/data/v1/objects/${object_name}/attributes/${attribute_name}/options/${optionName}`, { body, ...options });
   }
 
-  list(
-    attributeName: string,
-    params: OptionListParams,
-    options?: RequestOptions,
-  ): APIPromise<OptionListResponse> {
-    const { object_name } = params;
-    return this._client.get(
-      path`/data/v1/objects/${object_name}/attributes/${attributeName}/options`,
-      options,
-    );
+  list(attributeName: string, params: OptionListParams, options?: RequestOptions): APIPromise<OptionListResponse> {
+    const { object_name } = params
+    return this._client.get(path`/data/v1/objects/${object_name}/attributes/${attributeName}/options`, options);
   }
 
-  delete(
-    optionName: string,
-    params: OptionDeleteParams,
-    options?: RequestOptions,
-  ): APIPromise<OptionDeleteResponse> {
-    const { object_name, attribute_name } = params;
-    return this._client.delete(
-      path`/data/v1/objects/${object_name}/attributes/${attribute_name}/options/${optionName}`,
-      options,
-    );
+  delete(optionName: string, params: OptionDeleteParams, options?: RequestOptions): APIPromise<OptionDeleteResponse> {
+    const { object_name, attribute_name } = params
+    return this._client.delete(path`/data/v1/objects/${object_name}/attributes/${attribute_name}/options/${optionName}`, options);
   }
 }
 
@@ -201,6 +166,6 @@ export declare namespace Options {
     type OptionRetrieveParams as OptionRetrieveParams,
     type OptionUpdateParams as OptionUpdateParams,
     type OptionListParams as OptionListParams,
-    type OptionDeleteParams as OptionDeleteParams,
+    type OptionDeleteParams as OptionDeleteParams
   };
 }

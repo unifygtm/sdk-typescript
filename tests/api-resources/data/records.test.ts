@@ -2,10 +2,7 @@
 
 import Unify from '@unifygtm/sdk';
 
-const client = new Unify({
-  apiKey: 'My API Key',
-  baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
-});
+const client = new Unify({ apiKey: 'My API Key', baseURL: process.env["TEST_API_BASE_URL"] ?? 'http://127.0.0.1:4010' });
 
 describe('resource records', () => {
   // Mock server tests are disabled
@@ -23,21 +20,19 @@ describe('resource records', () => {
   // Mock server tests are disabled
   test.skip('create: required and optional params', async () => {
     const response = await client.data.records.create('object_name', {
-      data: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      validation_mode: 'strict',
-    });
+    data: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    validation_mode: 'strict',
+  });
   });
 
   // Mock server tests are disabled
@@ -60,9 +55,9 @@ describe('resource records', () => {
   // Mock server tests are disabled
   test.skip('update: only required params', async () => {
     const responsePromise = client.data.records.update('record_id', {
-      object_name: 'object_name',
-      data: { foo: {} },
-    });
+    object_name: 'object_name',
+    data: { foo: {} },
+  });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
     const response = await responsePromise;
@@ -75,22 +70,20 @@ describe('resource records', () => {
   // Mock server tests are disabled
   test.skip('update: required and optional params', async () => {
     const response = await client.data.records.update('record_id', {
-      object_name: 'object_name',
-      data: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      validation_mode: 'strict',
-    });
+    object_name: 'object_name',
+    data: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    validation_mode: 'strict',
+  });
   });
 
   // Mock server tests are disabled
@@ -124,21 +117,17 @@ describe('resource records', () => {
 
   // Mock server tests are disabled
   test.skip('findUnique: required and optional params', async () => {
-    const response = await client.data.records.findUnique('object_name', {
-      match: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-    });
+    const response = await client.data.records.findUnique('object_name', { match: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } } });
   });
 
   // Mock server tests are disabled
@@ -156,85 +145,73 @@ describe('resource records', () => {
   // Mock server tests are disabled
   test.skip('upsert: required and optional params', async () => {
     const response = await client.data.records.upsert('object_name', {
-      match: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      validation_mode: 'strict',
-      create: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      create_or_update: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      create_or_update_if_empty: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      update: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-      update_if_empty: {
-        foo: {
-          administrative_area: 'administrative_area',
-          country: { code: 'AD', name: 'name' },
-          dependent_locality: 'dependent_locality',
-          locality: 'locality',
-          postal_code: 'postal_code',
-          premise: 'premise',
-          sub_administrative_area: 'sub_administrative_area',
-          sub_premise: 'sub_premise',
-          thoroughfare: 'thoroughfare',
-        },
-      },
-    });
+    match: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    validation_mode: 'strict',
+    create: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    create_or_update: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    create_or_update_if_empty: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    update: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+    update_if_empty: { foo: {
+    administrative_area: 'administrative_area',
+    country: { code: 'AD', name: 'name' },
+    dependent_locality: 'dependent_locality',
+    locality: 'locality',
+    postal_code: 'postal_code',
+    premise: 'premise',
+    sub_administrative_area: 'sub_administrative_area',
+    sub_premise: 'sub_premise',
+    thoroughfare: 'thoroughfare',
+  } },
+  });
   });
 });

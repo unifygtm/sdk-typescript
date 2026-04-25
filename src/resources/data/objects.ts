@@ -14,11 +14,7 @@ export class Objects extends APIResource {
     return this._client.get(path`/data/v1/objects/${objectName}`, options);
   }
 
-  update(
-    objectName: string,
-    body: ObjectUpdateParams,
-    options?: RequestOptions,
-  ): APIPromise<ObjectUpdateResponse> {
+  update(objectName: string, body: ObjectUpdateParams, options?: RequestOptions): APIPromise<ObjectUpdateResponse> {
     return this._client.patch(path`/data/v1/objects/${objectName}`, { body, ...options });
   }
 
@@ -154,6 +150,6 @@ export declare namespace Objects {
     type ObjectListResponse as ObjectListResponse,
     type ObjectDeleteResponse as ObjectDeleteResponse,
     type ObjectCreateParams as ObjectCreateParams,
-    type ObjectUpdateParams as ObjectUpdateParams,
+    type ObjectUpdateParams as ObjectUpdateParams
   };
 }
