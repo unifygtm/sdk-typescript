@@ -6,33 +6,69 @@ import { RequestOptions } from '../../internal/request-options';
 import { path } from '../../internal/utils/path';
 
 export class Records extends APIResource {
-  create(objectName: string, params: RecordCreateParams, options?: RequestOptions): APIPromise<RecordCreateResponse> {
-    const { validation_mode, ...body } = params
-    return this._client.post(path`/data/v1/objects/${objectName}/records`, { query: { validation_mode }, body, ...options });
+  create(
+    objectName: string,
+    params: RecordCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<RecordCreateResponse> {
+    const { validation_mode, ...body } = params;
+    return this._client.post(path`/data/v1/objects/${objectName}/records`, {
+      query: { validation_mode },
+      body,
+      ...options,
+    });
   }
 
-  retrieve(recordID: string, params: RecordRetrieveParams, options?: RequestOptions): APIPromise<RecordRetrieveResponse> {
-    const { object_name } = params
+  retrieve(
+    recordID: string,
+    params: RecordRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<RecordRetrieveResponse> {
+    const { object_name } = params;
     return this._client.get(path`/data/v1/objects/${object_name}/records/${recordID}`, options);
   }
 
-  update(recordID: string, params: RecordUpdateParams, options?: RequestOptions): APIPromise<RecordUpdateResponse> {
-    const { object_name, validation_mode, ...body } = params
-    return this._client.patch(path`/data/v1/objects/${object_name}/records/${recordID}`, { query: { validation_mode }, body, ...options });
+  update(
+    recordID: string,
+    params: RecordUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<RecordUpdateResponse> {
+    const { object_name, validation_mode, ...body } = params;
+    return this._client.patch(path`/data/v1/objects/${object_name}/records/${recordID}`, {
+      query: { validation_mode },
+      body,
+      ...options,
+    });
   }
 
-  delete(recordID: string, params: RecordDeleteParams, options?: RequestOptions): APIPromise<RecordDeleteResponse> {
-    const { object_name } = params
+  delete(
+    recordID: string,
+    params: RecordDeleteParams,
+    options?: RequestOptions,
+  ): APIPromise<RecordDeleteResponse> {
+    const { object_name } = params;
     return this._client.delete(path`/data/v1/objects/${object_name}/records/${recordID}`, options);
   }
 
-  findUnique(objectName: string, body: RecordFindUniqueParams, options?: RequestOptions): APIPromise<RecordFindUniqueResponse> {
+  findUnique(
+    objectName: string,
+    body: RecordFindUniqueParams,
+    options?: RequestOptions,
+  ): APIPromise<RecordFindUniqueResponse> {
     return this._client.post(path`/data/v1/objects/${objectName}/records/find-unique`, { body, ...options });
   }
 
-  upsert(objectName: string, params: RecordUpsertParams, options?: RequestOptions): APIPromise<RecordUpsertResponse> {
-    const { validation_mode, ...body } = params
-    return this._client.post(path`/data/v1/objects/${objectName}/records/upsert`, { query: { validation_mode }, body, ...options });
+  upsert(
+    objectName: string,
+    params: RecordUpsertParams,
+    options?: RequestOptions,
+  ): APIPromise<RecordUpsertResponse> {
+    const { validation_mode, ...body } = params;
+    return this._client.post(path`/data/v1/objects/${objectName}/records/upsert`, {
+      query: { validation_mode },
+      body,
+      ...options,
+    });
   }
 }
 
@@ -89,7 +125,7 @@ export interface UAddress {
 /**
  * Boolean value.
  */
-export type UBoolean = boolean
+export type UBoolean = boolean;
 
 /**
  * Attribute key-value pairs associated with an object record.
@@ -175,7 +211,29 @@ export interface UCompanyAttributes {
    */
   time_zone?: UText | null;
 
-[k: string]: UValue | null | UURL | UAddress | UPhoneNumber | null | UText | null | UBoolean | null | UInteger | null | UDate | null | UDatetime | null | UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null | UCurrency | undefined
+  [k: string]:
+    | UValue
+    | null
+    | UURL
+    | UAddress
+    | UPhoneNumber
+    | null
+    | UText
+    | null
+    | UBoolean
+    | null
+    | UInteger
+    | null
+    | UDate
+    | null
+    | UDatetime
+    | null
+    | UReferenceByID
+    | UReferenceByMatch
+    | UReferenceByUpsert
+    | null
+    | UCurrency
+    | undefined;
 }
 
 /**
@@ -185,7 +243,257 @@ export interface UCountry {
   /**
    * ISO 3166-1 alpha-2 country code.
    */
-  code: 'AD' | 'AE' | 'AF' | 'AG' | 'AI' | 'AL' | 'AM' | 'AO' | 'AQ' | 'AR' | 'AS' | 'AT' | 'AU' | 'AW' | 'AX' | 'AZ' | 'BA' | 'BB' | 'BD' | 'BE' | 'BF' | 'BG' | 'BH' | 'BI' | 'BJ' | 'BL' | 'BM' | 'BN' | 'BO' | 'BQ' | 'BR' | 'BS' | 'BT' | 'BV' | 'BW' | 'BY' | 'BZ' | 'CA' | 'CC' | 'CD' | 'CF' | 'CG' | 'CH' | 'CI' | 'CK' | 'CL' | 'CM' | 'CN' | 'CO' | 'CR' | 'CU' | 'CV' | 'CW' | 'CX' | 'CY' | 'CZ' | 'DE' | 'DJ' | 'DK' | 'DM' | 'DO' | 'DZ' | 'EC' | 'EE' | 'EG' | 'EH' | 'ER' | 'ES' | 'ET' | 'FI' | 'FJ' | 'FK' | 'FM' | 'FO' | 'FR' | 'GA' | 'GB' | 'GD' | 'GE' | 'GF' | 'GG' | 'GH' | 'GI' | 'GL' | 'GM' | 'GN' | 'GP' | 'GQ' | 'GR' | 'GS' | 'GT' | 'GU' | 'GW' | 'GY' | 'HK' | 'HM' | 'HN' | 'HR' | 'HT' | 'HU' | 'ID' | 'IE' | 'IL' | 'IM' | 'IN' | 'IO' | 'IQ' | 'IR' | 'IS' | 'IT' | 'JE' | 'JM' | 'JO' | 'JP' | 'KE' | 'KG' | 'KH' | 'KI' | 'KM' | 'KN' | 'KP' | 'KR' | 'KW' | 'KY' | 'KZ' | 'LA' | 'LB' | 'LC' | 'LI' | 'LK' | 'LR' | 'LS' | 'LT' | 'LU' | 'LV' | 'LY' | 'MA' | 'MC' | 'MD' | 'ME' | 'MF' | 'MG' | 'MH' | 'MK' | 'ML' | 'MM' | 'MN' | 'MO' | 'MP' | 'MQ' | 'MR' | 'MS' | 'MT' | 'MU' | 'MV' | 'MW' | 'MX' | 'MY' | 'MZ' | 'NA' | 'NC' | 'NE' | 'NF' | 'NG' | 'NI' | 'NL' | 'NO' | 'NP' | 'NR' | 'NU' | 'NZ' | 'OM' | 'PA' | 'PE' | 'PF' | 'PG' | 'PH' | 'PK' | 'PL' | 'PM' | 'PN' | 'PR' | 'PS' | 'PT' | 'PW' | 'PY' | 'QA' | 'RE' | 'RO' | 'RS' | 'RU' | 'RW' | 'SA' | 'SB' | 'SC' | 'SD' | 'SE' | 'SG' | 'SH' | 'SI' | 'SJ' | 'SK' | 'SL' | 'SM' | 'SN' | 'SO' | 'SR' | 'SS' | 'ST' | 'SV' | 'SX' | 'SY' | 'SZ' | 'TC' | 'TD' | 'TF' | 'TG' | 'TH' | 'TJ' | 'TK' | 'TL' | 'TM' | 'TN' | 'TO' | 'TR' | 'TT' | 'TV' | 'TW' | 'TZ' | 'UA' | 'UG' | 'UM' | 'US' | 'UY' | 'UZ' | 'VA' | 'VC' | 'VE' | 'VG' | 'VI' | 'VN' | 'VU' | 'WF' | 'WS' | 'XK' | 'YE' | 'YT' | 'ZA' | 'ZM' | 'ZW';
+  code:
+    | 'AD'
+    | 'AE'
+    | 'AF'
+    | 'AG'
+    | 'AI'
+    | 'AL'
+    | 'AM'
+    | 'AO'
+    | 'AQ'
+    | 'AR'
+    | 'AS'
+    | 'AT'
+    | 'AU'
+    | 'AW'
+    | 'AX'
+    | 'AZ'
+    | 'BA'
+    | 'BB'
+    | 'BD'
+    | 'BE'
+    | 'BF'
+    | 'BG'
+    | 'BH'
+    | 'BI'
+    | 'BJ'
+    | 'BL'
+    | 'BM'
+    | 'BN'
+    | 'BO'
+    | 'BQ'
+    | 'BR'
+    | 'BS'
+    | 'BT'
+    | 'BV'
+    | 'BW'
+    | 'BY'
+    | 'BZ'
+    | 'CA'
+    | 'CC'
+    | 'CD'
+    | 'CF'
+    | 'CG'
+    | 'CH'
+    | 'CI'
+    | 'CK'
+    | 'CL'
+    | 'CM'
+    | 'CN'
+    | 'CO'
+    | 'CR'
+    | 'CU'
+    | 'CV'
+    | 'CW'
+    | 'CX'
+    | 'CY'
+    | 'CZ'
+    | 'DE'
+    | 'DJ'
+    | 'DK'
+    | 'DM'
+    | 'DO'
+    | 'DZ'
+    | 'EC'
+    | 'EE'
+    | 'EG'
+    | 'EH'
+    | 'ER'
+    | 'ES'
+    | 'ET'
+    | 'FI'
+    | 'FJ'
+    | 'FK'
+    | 'FM'
+    | 'FO'
+    | 'FR'
+    | 'GA'
+    | 'GB'
+    | 'GD'
+    | 'GE'
+    | 'GF'
+    | 'GG'
+    | 'GH'
+    | 'GI'
+    | 'GL'
+    | 'GM'
+    | 'GN'
+    | 'GP'
+    | 'GQ'
+    | 'GR'
+    | 'GS'
+    | 'GT'
+    | 'GU'
+    | 'GW'
+    | 'GY'
+    | 'HK'
+    | 'HM'
+    | 'HN'
+    | 'HR'
+    | 'HT'
+    | 'HU'
+    | 'ID'
+    | 'IE'
+    | 'IL'
+    | 'IM'
+    | 'IN'
+    | 'IO'
+    | 'IQ'
+    | 'IR'
+    | 'IS'
+    | 'IT'
+    | 'JE'
+    | 'JM'
+    | 'JO'
+    | 'JP'
+    | 'KE'
+    | 'KG'
+    | 'KH'
+    | 'KI'
+    | 'KM'
+    | 'KN'
+    | 'KP'
+    | 'KR'
+    | 'KW'
+    | 'KY'
+    | 'KZ'
+    | 'LA'
+    | 'LB'
+    | 'LC'
+    | 'LI'
+    | 'LK'
+    | 'LR'
+    | 'LS'
+    | 'LT'
+    | 'LU'
+    | 'LV'
+    | 'LY'
+    | 'MA'
+    | 'MC'
+    | 'MD'
+    | 'ME'
+    | 'MF'
+    | 'MG'
+    | 'MH'
+    | 'MK'
+    | 'ML'
+    | 'MM'
+    | 'MN'
+    | 'MO'
+    | 'MP'
+    | 'MQ'
+    | 'MR'
+    | 'MS'
+    | 'MT'
+    | 'MU'
+    | 'MV'
+    | 'MW'
+    | 'MX'
+    | 'MY'
+    | 'MZ'
+    | 'NA'
+    | 'NC'
+    | 'NE'
+    | 'NF'
+    | 'NG'
+    | 'NI'
+    | 'NL'
+    | 'NO'
+    | 'NP'
+    | 'NR'
+    | 'NU'
+    | 'NZ'
+    | 'OM'
+    | 'PA'
+    | 'PE'
+    | 'PF'
+    | 'PG'
+    | 'PH'
+    | 'PK'
+    | 'PL'
+    | 'PM'
+    | 'PN'
+    | 'PR'
+    | 'PS'
+    | 'PT'
+    | 'PW'
+    | 'PY'
+    | 'QA'
+    | 'RE'
+    | 'RO'
+    | 'RS'
+    | 'RU'
+    | 'RW'
+    | 'SA'
+    | 'SB'
+    | 'SC'
+    | 'SD'
+    | 'SE'
+    | 'SG'
+    | 'SH'
+    | 'SI'
+    | 'SJ'
+    | 'SK'
+    | 'SL'
+    | 'SM'
+    | 'SN'
+    | 'SO'
+    | 'SR'
+    | 'SS'
+    | 'ST'
+    | 'SV'
+    | 'SX'
+    | 'SY'
+    | 'SZ'
+    | 'TC'
+    | 'TD'
+    | 'TF'
+    | 'TG'
+    | 'TH'
+    | 'TJ'
+    | 'TK'
+    | 'TL'
+    | 'TM'
+    | 'TN'
+    | 'TO'
+    | 'TR'
+    | 'TT'
+    | 'TV'
+    | 'TW'
+    | 'TZ'
+    | 'UA'
+    | 'UG'
+    | 'UM'
+    | 'US'
+    | 'UY'
+    | 'UZ'
+    | 'VA'
+    | 'VC'
+    | 'VE'
+    | 'VG'
+    | 'VI'
+    | 'VN'
+    | 'VU'
+    | 'WF'
+    | 'WS'
+    | 'XK'
+    | 'YE'
+    | 'YT'
+    | 'ZA'
+    | 'ZM'
+    | 'ZW';
 
   /**
    * Country name.
@@ -200,7 +508,184 @@ export interface UCurrency {
   /**
    * ISO 4217 currency code.
    */
-  code: 'AED' | 'AFN' | 'ALL' | 'AMD' | 'ANG' | 'AOA' | 'ARS' | 'AUD' | 'AWG' | 'AZN' | 'BAM' | 'BBD' | 'BDT' | 'BGN' | 'BHD' | 'BIF' | 'BMD' | 'BND' | 'BOB' | 'BOV' | 'BRL' | 'BSD' | 'BTN' | 'BWP' | 'BYR' | 'BZD' | 'CAD' | 'CDF' | 'CHE' | 'CHF' | 'CHW' | 'CLF' | 'CLP' | 'CNY' | 'COP' | 'COU' | 'CRC' | 'CUC' | 'CUP' | 'CVE' | 'CZK' | 'DJF' | 'DKK' | 'DOP' | 'DZD' | 'EGP' | 'ERN' | 'ETB' | 'EUR' | 'FJD' | 'FKP' | 'GBP' | 'GEL' | 'GHS' | 'GIP' | 'GMD' | 'GNF' | 'GTQ' | 'GYD' | 'HKD' | 'HNL' | 'HRK' | 'HTG' | 'HUF' | 'IDR' | 'ILS' | 'INR' | 'IQD' | 'IRR' | 'ISK' | 'JMD' | 'JOD' | 'JPY' | 'KES' | 'KGS' | 'KHR' | 'KMF' | 'KPW' | 'KRW' | 'KWD' | 'KYD' | 'KZT' | 'LAK' | 'LBP' | 'LKR' | 'LRD' | 'LSL' | 'LTL' | 'LVL' | 'LYD' | 'MAD' | 'MDL' | 'MGA' | 'MKD' | 'MMK' | 'MNT' | 'MOP' | 'MRO' | 'MUR' | 'MVR' | 'MWK' | 'MXN' | 'MXV' | 'MYR' | 'MZN' | 'NAD' | 'NGN' | 'NIO' | 'NOK' | 'NPR' | 'NZD' | 'OMR' | 'PAB' | 'PEN' | 'PGK' | 'PHP' | 'PKR' | 'PLN' | 'PYG' | 'QAR' | 'RON' | 'RSD' | 'RUB' | 'RWF' | 'SAR' | 'SBD' | 'SCR' | 'SDG' | 'SEK' | 'SGD' | 'SHP' | 'SLL' | 'SOS' | 'SRD' | 'SSP' | 'STD' | 'SYP' | 'SZL' | 'THB' | 'TJS' | 'TMT' | 'TND' | 'TOP' | 'TRY' | 'TTD' | 'TWD' | 'TZS' | 'UAH' | 'UGX' | 'USD' | 'USN' | 'USS' | 'UYI' | 'UYU' | 'UZS' | 'VEF' | 'VND' | 'VUV' | 'WST' | 'XAF' | 'XAG' | 'XAU' | 'XBA' | 'XBB' | 'XBC' | 'XBD' | 'XCD' | 'XDR' | 'XOF' | 'XPD' | 'XPF' | 'XPT' | 'XTS' | 'XXX' | 'YER' | 'ZAR' | 'ZMW';
+  code:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'ANG'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BGN'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYR'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HRK'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LTL'
+    | 'LVL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRO'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLL'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STD'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'USS'
+    | 'UYI'
+    | 'UYU'
+    | 'UZS'
+    | 'VEF'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XTS'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW';
 
   /**
    * Currency value.
@@ -211,32 +696,32 @@ export interface UCurrency {
 /**
  * String value representing a date.
  */
-export type UDate = string
+export type UDate = string;
 
 /**
  * String value representing a datetime.
  */
-export type UDatetime = string
+export type UDatetime = string;
 
 /**
  * Decimal value.
  */
-export type UDecimal = number
+export type UDecimal = number;
 
 /**
  * String value representing an email address.
  */
-export type UEmail = string
+export type UEmail = string;
 
 /**
  * Integer value.
  */
-export type UInteger = number
+export type UInteger = number;
 
 /**
  * String array that contains strings from a specific set of allowed values.
  */
-export type UMultiselect = Array<string>
+export type UMultiselect = Array<string>;
 
 /**
  * Attribute key-value pairs associated with an object record.
@@ -292,7 +777,18 @@ export interface UOpportunityAttributes {
    */
   stage?: UText | null;
 
-[k: string]: UValue | null | UText | UCurrency | UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null | UDatetime | null | undefined
+  [k: string]:
+    | UValue
+    | null
+    | UText
+    | UCurrency
+    | UReferenceByID
+    | UReferenceByMatch
+    | UReferenceByUpsert
+    | null
+    | UDatetime
+    | null
+    | undefined;
 }
 
 /**
@@ -389,13 +885,32 @@ export interface UPersonAttributes {
    */
   work_phone?: UPhoneNumber | null;
 
-[k: string]: UValue | null | UEmail | UAddress | UReferenceByID | UReferenceByMatch | UReferenceByUpsert | null | UPhoneNumber | null | UBoolean | null | UText | null | UDatetime | null | UURL | null | undefined
+  [k: string]:
+    | UValue
+    | null
+    | UEmail
+    | UAddress
+    | UReferenceByID
+    | UReferenceByMatch
+    | UReferenceByUpsert
+    | null
+    | UPhoneNumber
+    | null
+    | UBoolean
+    | null
+    | UText
+    | null
+    | UDatetime
+    | null
+    | UURL
+    | null
+    | undefined;
 }
 
 /**
  * String value representing a phone number.
  */
-export type UPhoneNumber = string
+export type UPhoneNumber = string;
 
 /**
  * Object record with its associated metadata and attribute key-value pairs.
@@ -430,7 +945,7 @@ export interface URecord {
 /**
  * Attribute key-value pairs associated with an object record.
  */
-export type URecordAttributes = { [key: string]: UValue | null }
+export type URecordAttributes = { [key: string]: UValue | null };
 
 /**
  * Reference to another object record by ID.
@@ -528,27 +1043,37 @@ export interface UReferenceByUpsert {
 /**
  * String value that matches one of a specific set of allowed values.
  */
-export type USelect = string
+export type USelect = string;
 
 /**
  * String value.
  */
-export type UText = string
+export type UText = string;
 
 /**
  * String value representing a web URL or internet domain.
  */
-export type UURL = string
+export type UURL = string;
 
 /**
  * String UUIDv4 value.
  */
-export type UUuid = string
+export type UUuid = string;
 
 /**
  * Composite object representing a physical address.
  */
-export type UValue = UAddress | UBoolean | UCountry | UCurrency | UDate | UDecimal | UMultiselect | UReferenceByID | UReferenceByMatch | UReferenceByUpsert
+export type UValue =
+  | UAddress
+  | UBoolean
+  | UCountry
+  | UCurrency
+  | UDate
+  | UDecimal
+  | UMultiselect
+  | UReferenceByID
+  | UReferenceByMatch
+  | UReferenceByUpsert;
 
 /**
  * Validation mode to use when validating request data.
@@ -561,7 +1086,7 @@ export type UValue = UAddress | UBoolean | UCountry | UCurrency | UDate | UDecim
  * will still fail if the request body does not contain the proper structure or if
  * any required attributes fail validation.
  */
-export type ValidationMode = 'strict' | 'ignore_invalid'
+export type ValidationMode = 'strict' | 'ignore_invalid';
 
 /**
  * Response for a successful create operation.
@@ -773,6 +1298,6 @@ export declare namespace Records {
     type RecordUpdateParams as RecordUpdateParams,
     type RecordDeleteParams as RecordDeleteParams,
     type RecordFindUniqueParams as RecordFindUniqueParams,
-    type RecordUpsertParams as RecordUpsertParams
+    type RecordUpsertParams as RecordUpsertParams,
   };
 }

@@ -2,11 +2,75 @@
 
 import { APIResource } from '../../core/resource';
 import * as ObjectsAPI from './objects';
-import { ObjectCreateParams, ObjectCreateResponse, ObjectDeleteResponse, ObjectListResponse, ObjectRetrieveResponse, ObjectUpdateParams, ObjectUpdateResponse, Objects, UObject } from './objects';
+import {
+  ObjectCreateParams,
+  ObjectCreateResponse,
+  ObjectDeleteResponse,
+  ObjectListResponse,
+  ObjectRetrieveResponse,
+  ObjectUpdateParams,
+  ObjectUpdateResponse,
+  Objects,
+  UObject,
+} from './objects';
 import * as RecordsAPI from './records';
-import { RecordCreateParams, RecordCreateResponse, RecordDeleteParams, RecordDeleteResponse, RecordFindUniqueParams, RecordFindUniqueResponse, RecordRetrieveParams, RecordRetrieveResponse, RecordUpdateParams, RecordUpdateResponse, RecordUpsertParams, RecordUpsertResponse, Records, UAddress, UBoolean, UCompanyAttributes, UCountry, UCurrency, UDate, UDatetime, UDecimal, UEmail, UInteger, UMultiselect, UOpportunityAttributes, UPersonAttributes, UPhoneNumber, URecord, URecordAttributes, UReferenceByID, UReferenceByMatch, UReferenceByUpsert, USelect, UText, UURL, UUuid, UValue, ValidationMode } from './records';
+import {
+  RecordCreateParams,
+  RecordCreateResponse,
+  RecordDeleteParams,
+  RecordDeleteResponse,
+  RecordFindUniqueParams,
+  RecordFindUniqueResponse,
+  RecordRetrieveParams,
+  RecordRetrieveResponse,
+  RecordUpdateParams,
+  RecordUpdateResponse,
+  RecordUpsertParams,
+  RecordUpsertResponse,
+  Records,
+  UAddress,
+  UBoolean,
+  UCompanyAttributes,
+  UCountry,
+  UCurrency,
+  UDate,
+  UDatetime,
+  UDecimal,
+  UEmail,
+  UInteger,
+  UMultiselect,
+  UOpportunityAttributes,
+  UPersonAttributes,
+  UPhoneNumber,
+  URecord,
+  URecordAttributes,
+  UReferenceByID,
+  UReferenceByMatch,
+  UReferenceByUpsert,
+  USelect,
+  UText,
+  UURL,
+  UUuid,
+  UValue,
+  ValidationMode,
+} from './records';
 import * as AttributesAPI from './attributes/attributes';
-import { AttributeCreateParams, AttributeCreateResponse, AttributeDeleteParams, AttributeDeleteResponse, AttributeListResponse, AttributeRetrieveParams, AttributeRetrieveResponse, AttributeUpdateParams, AttributeUpdateResponse, Attributes, UAttribute, UAttributeOptionUpdateItem, UReferenceCardinality, URelatedReferenceAttribute } from './attributes/attributes';
+import {
+  AttributeCreateParams,
+  AttributeCreateResponse,
+  AttributeDeleteParams,
+  AttributeDeleteResponse,
+  AttributeListResponse,
+  AttributeRetrieveParams,
+  AttributeRetrieveResponse,
+  AttributeUpdateParams,
+  AttributeUpdateResponse,
+  Attributes,
+  UAttribute,
+  UAttributeOptionUpdateItem,
+  UReferenceCardinality,
+  URelatedReferenceAttribute,
+} from './attributes/attributes';
 
 export class Data extends APIResource {
   objects: ObjectsAPI.Objects = new ObjectsAPI.Objects(this._client);
@@ -28,7 +92,7 @@ export declare namespace Data {
     type ObjectListResponse as ObjectListResponse,
     type ObjectDeleteResponse as ObjectDeleteResponse,
     type ObjectCreateParams as ObjectCreateParams,
-    type ObjectUpdateParams as ObjectUpdateParams
+    type ObjectUpdateParams as ObjectUpdateParams,
   };
 
   export {
@@ -45,7 +109,7 @@ export declare namespace Data {
     type AttributeCreateParams as AttributeCreateParams,
     type AttributeRetrieveParams as AttributeRetrieveParams,
     type AttributeUpdateParams as AttributeUpdateParams,
-    type AttributeDeleteParams as AttributeDeleteParams
+    type AttributeDeleteParams as AttributeDeleteParams,
   };
 
   export {
@@ -86,6 +150,6 @@ export declare namespace Data {
     type RecordUpdateParams as RecordUpdateParams,
     type RecordDeleteParams as RecordDeleteParams,
     type RecordFindUniqueParams as RecordFindUniqueParams,
-    type RecordUpsertParams as RecordUpsertParams
+    type RecordUpsertParams as RecordUpsertParams,
   };
 }

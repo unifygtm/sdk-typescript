@@ -3,7 +3,20 @@
 import { APIResource } from '../../../core/resource';
 import * as AttributesAPI from './attributes';
 import * as OptionsAPI from './options';
-import { OptionCreateParams, OptionCreateResponse, OptionDeleteParams, OptionDeleteResponse, OptionListParams, OptionListResponse, OptionRetrieveParams, OptionRetrieveResponse, OptionUpdateParams, OptionUpdateResponse, Options, UAttributeOption } from './options';
+import {
+  OptionCreateParams,
+  OptionCreateResponse,
+  OptionDeleteParams,
+  OptionDeleteResponse,
+  OptionListParams,
+  OptionListResponse,
+  OptionRetrieveParams,
+  OptionRetrieveResponse,
+  OptionUpdateParams,
+  OptionUpdateResponse,
+  Options,
+  UAttributeOption,
+} from './options';
 import { APIPromise } from '../../../core/api-promise';
 import { RequestOptions } from '../../../internal/request-options';
 import { path } from '../../../internal/utils/path';
@@ -11,26 +24,45 @@ import { path } from '../../../internal/utils/path';
 export class Attributes extends APIResource {
   options: OptionsAPI.Options = new OptionsAPI.Options(this._client);
 
-  create(objectName: string, body: AttributeCreateParams, options?: RequestOptions): APIPromise<AttributeCreateResponse> {
+  create(
+    objectName: string,
+    body: AttributeCreateParams,
+    options?: RequestOptions,
+  ): APIPromise<AttributeCreateResponse> {
     return this._client.post(path`/data/v1/objects/${objectName}/attributes`, { body, ...options });
   }
 
-  retrieve(attributeName: string, params: AttributeRetrieveParams, options?: RequestOptions): APIPromise<AttributeRetrieveResponse> {
-    const { object_name } = params
+  retrieve(
+    attributeName: string,
+    params: AttributeRetrieveParams,
+    options?: RequestOptions,
+  ): APIPromise<AttributeRetrieveResponse> {
+    const { object_name } = params;
     return this._client.get(path`/data/v1/objects/${object_name}/attributes/${attributeName}`, options);
   }
 
-  update(attributeName: string, params: AttributeUpdateParams, options?: RequestOptions): APIPromise<AttributeUpdateResponse> {
-    const { object_name, ...body } = params
-    return this._client.patch(path`/data/v1/objects/${object_name}/attributes/${attributeName}`, { body, ...options });
+  update(
+    attributeName: string,
+    params: AttributeUpdateParams,
+    options?: RequestOptions,
+  ): APIPromise<AttributeUpdateResponse> {
+    const { object_name, ...body } = params;
+    return this._client.patch(path`/data/v1/objects/${object_name}/attributes/${attributeName}`, {
+      body,
+      ...options,
+    });
   }
 
   list(objectName: string, options?: RequestOptions): APIPromise<AttributeListResponse> {
     return this._client.get(path`/data/v1/objects/${objectName}/attributes`, options);
   }
 
-  delete(attributeName: string, params: AttributeDeleteParams, options?: RequestOptions): APIPromise<AttributeDeleteResponse> {
-    const { object_name } = params
+  delete(
+    attributeName: string,
+    params: AttributeDeleteParams,
+    options?: RequestOptions,
+  ): APIPromise<AttributeDeleteResponse> {
+    const { object_name } = params;
     return this._client.delete(path`/data/v1/objects/${object_name}/attributes/${attributeName}`, options);
   }
 }
@@ -38,7 +70,23 @@ export class Attributes extends APIResource {
 /**
  * Definition of an attribute on a Unify object.
  */
-export type UAttribute = UAttribute.UnionMember0 | UAttribute.UnionMember1 | UAttribute.UnionMember2 | UAttribute.UnionMember3 | UAttribute.UnionMember4 | UAttribute.UnionMember5 | UAttribute.UnionMember6 | UAttribute.UnionMember7 | UAttribute.UnionMember8 | UAttribute.UnionMember9 | UAttribute.UnionMember10 | UAttribute.UnionMember11 | UAttribute.UnionMember12 | UAttribute.UnionMember13 | UAttribute.UnionMember14 | UAttribute.UnionMember15
+export type UAttribute =
+  | UAttribute.UnionMember0
+  | UAttribute.UnionMember1
+  | UAttribute.UnionMember2
+  | UAttribute.UnionMember3
+  | UAttribute.UnionMember4
+  | UAttribute.UnionMember5
+  | UAttribute.UnionMember6
+  | UAttribute.UnionMember7
+  | UAttribute.UnionMember8
+  | UAttribute.UnionMember9
+  | UAttribute.UnionMember10
+  | UAttribute.UnionMember11
+  | UAttribute.UnionMember12
+  | UAttribute.UnionMember13
+  | UAttribute.UnionMember14
+  | UAttribute.UnionMember15;
 
 export namespace UAttribute {
   /**
@@ -694,7 +742,7 @@ export interface UAttributeOptionUpdateItem {
   display_name: string;
 }
 
-export type UReferenceCardinality = 'ONE' | 'MANY'
+export type UReferenceCardinality = 'ONE' | 'MANY';
 
 export interface URelatedReferenceAttribute {
   api_name: string;
@@ -756,7 +804,23 @@ export interface AttributeDeleteResponse {
   status: 'success';
 }
 
-export type AttributeCreateParams = AttributeCreateParams.Variant0 | AttributeCreateParams.Variant1 | AttributeCreateParams.Variant2 | AttributeCreateParams.Variant3 | AttributeCreateParams.Variant4 | AttributeCreateParams.Variant5 | AttributeCreateParams.Variant6 | AttributeCreateParams.Variant7 | AttributeCreateParams.Variant8 | AttributeCreateParams.UObjectsUMultiSelectAttribute | AttributeCreateParams.Variant10 | AttributeCreateParams.UObjectsUReferenceAttribute | AttributeCreateParams.UObjectsUSelectAttribute | AttributeCreateParams.Variant13 | AttributeCreateParams.Variant14 | AttributeCreateParams.Variant15
+export type AttributeCreateParams =
+  | AttributeCreateParams.Variant0
+  | AttributeCreateParams.Variant1
+  | AttributeCreateParams.Variant2
+  | AttributeCreateParams.Variant3
+  | AttributeCreateParams.Variant4
+  | AttributeCreateParams.Variant5
+  | AttributeCreateParams.Variant6
+  | AttributeCreateParams.Variant7
+  | AttributeCreateParams.Variant8
+  | AttributeCreateParams.UObjectsUMultiSelectAttribute
+  | AttributeCreateParams.Variant10
+  | AttributeCreateParams.UObjectsUReferenceAttribute
+  | AttributeCreateParams.UObjectsUSelectAttribute
+  | AttributeCreateParams.Variant13
+  | AttributeCreateParams.Variant14
+  | AttributeCreateParams.Variant15;
 
 export declare namespace AttributeCreateParams {
   export interface Variant0 {
@@ -1366,7 +1430,23 @@ export interface AttributeRetrieveParams {
   object_name: string;
 }
 
-export type AttributeUpdateParams = AttributeUpdateParams.Variant0 | AttributeUpdateParams.Variant1 | AttributeUpdateParams.Variant2 | AttributeUpdateParams.Variant3 | AttributeUpdateParams.Variant4 | AttributeUpdateParams.Variant5 | AttributeUpdateParams.Variant6 | AttributeUpdateParams.Variant7 | AttributeUpdateParams.Variant8 | AttributeUpdateParams.UObjectsUMultiSelectAttributeUpdate | AttributeUpdateParams.Variant10 | AttributeUpdateParams.UObjectsUReferenceAttributeUpdate | AttributeUpdateParams.UObjectsUSelectAttributeUpdate | AttributeUpdateParams.Variant13 | AttributeUpdateParams.Variant14 | AttributeUpdateParams.Variant15
+export type AttributeUpdateParams =
+  | AttributeUpdateParams.Variant0
+  | AttributeUpdateParams.Variant1
+  | AttributeUpdateParams.Variant2
+  | AttributeUpdateParams.Variant3
+  | AttributeUpdateParams.Variant4
+  | AttributeUpdateParams.Variant5
+  | AttributeUpdateParams.Variant6
+  | AttributeUpdateParams.Variant7
+  | AttributeUpdateParams.Variant8
+  | AttributeUpdateParams.UObjectsUMultiSelectAttributeUpdate
+  | AttributeUpdateParams.Variant10
+  | AttributeUpdateParams.UObjectsUReferenceAttributeUpdate
+  | AttributeUpdateParams.UObjectsUSelectAttributeUpdate
+  | AttributeUpdateParams.Variant13
+  | AttributeUpdateParams.Variant14
+  | AttributeUpdateParams.Variant15;
 
 export declare namespace AttributeUpdateParams {
   export interface Variant0 {
@@ -1736,7 +1816,7 @@ export declare namespace Attributes {
     type AttributeCreateParams as AttributeCreateParams,
     type AttributeRetrieveParams as AttributeRetrieveParams,
     type AttributeUpdateParams as AttributeUpdateParams,
-    type AttributeDeleteParams as AttributeDeleteParams
+    type AttributeDeleteParams as AttributeDeleteParams,
   };
 
   export {
@@ -1751,6 +1831,6 @@ export declare namespace Attributes {
     type OptionRetrieveParams as OptionRetrieveParams,
     type OptionUpdateParams as OptionUpdateParams,
     type OptionListParams as OptionListParams,
-    type OptionDeleteParams as OptionDeleteParams
+    type OptionDeleteParams as OptionDeleteParams,
   };
 }
